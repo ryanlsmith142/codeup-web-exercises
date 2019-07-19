@@ -10,6 +10,7 @@ h2, h3, h4, h5, h6 {
     color: darkblue;
     text-decoration: underline;
     padding: 10px;
+    text-align: center;
 }
 
 li {
@@ -19,6 +20,8 @@ li {
 
 table {
     width: 50%;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 tr {
@@ -39,6 +42,12 @@ a:hover {
 hr {
     margin: 15px;
 }
+
+footer {
+    text-align: center;
+    margin: 15px;
+    padding: 50px;
+}
 /*classes*/
 
 .fancy-header {
@@ -49,6 +58,14 @@ hr {
     padding: 20px;
 }
 
+.company-vision {
+    text-align: center;
+    padding-bottom: 30px;
+}
+
+.company-vision h2 {
+    padding: 30px;
+}
 .list    {
     text-align: center;
     justify-content; start;
