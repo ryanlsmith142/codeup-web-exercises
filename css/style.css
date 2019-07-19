@@ -4,10 +4,14 @@
 * {
     font-family: 'Ubuntu', "Times New Roman", sans-serif;
     margin: 0;
+    color: lightgrey;
 }
 
+main {
+    background-image: linear-gradient(blue, green);
+}
 h2, h3, h4, h5, h6 {
-    color: darkblue;
+    color: lightgrey;
     text-decoration: underline;
     padding: 10px;
     text-align: center;
@@ -68,7 +72,7 @@ footer {
 }
 .list    {
     text-align: center;
-    justify-content; start;
+    justify-content: start;
 }
 
 .list ul, ol {
