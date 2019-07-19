@@ -3,14 +3,18 @@
 /*Main Elements*/
 * {
     font-family: 'Ubuntu', "Times New Roman", sans-serif;
+    margin: 0;
 }
+
 h2, h3, h4, h5, h6 {
     color: darkblue;
     text-decoration: underline;
+    padding: 10px;
 }
 
 li {
     list-style-type: square;
+    text-align: left;
 }
 
 table {
@@ -32,6 +36,9 @@ a:hover {
 
 }
 
+hr {
+    margin: 15px;
+}
 /*classes*/
 
 .fancy-header {
@@ -39,7 +46,20 @@ a:hover {
     background-image: url("../img/space.jpeg");
     background-size: 300px;
     text-align: center;
+    padding: 20px;
 }
+
+.list    {
+    text-align: center;
+    justify-content; start;
+}
+
+.list ul, ol {
+    display:inline-table;
+}
+
+
+
 
 
 
