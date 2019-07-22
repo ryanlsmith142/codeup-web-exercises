@@ -26,7 +26,7 @@ a {
     color: var(--link-color);
 }
 .container {
-    padding-bottom: 2em;
+    margin: 2em;
 }
 .top-nav {
     background: var(--light-bg);
@@ -70,6 +70,13 @@ a {
     margin-left: .5em;
     float: left;
 }
+.profile-items {
+    padding: 0;
+    list-style: none;
+}
+.profile-entry {
+    .5em;
+}
 .timeline {
     width: calc(50% - 1em);
     margin-right: .5em;
@@ -103,4 +110,24 @@ a {
 }
 .text-muted {
     color: var(--main-link-color);
+}
+/*Media Classes*/
+
+.media {
+    width: 100%;
+    background: var(--light-bg);
+    border-bottom: 1px var(--separator-color) solid;
+    padding: .5em;
+    overflow: auto;
+}
+
+.media-image {
+    width: 50px;
+    float: left;
+    margin-top: 1.33em;
+}
+
+.media-body {
+    float: right;
+    width: calc(100% - 50px);
 }
