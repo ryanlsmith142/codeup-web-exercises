@@ -75,7 +75,7 @@ a {
     list-style: none;
 }
 .profile-entry {
-    .5em;
+    margin: .5em;
 }
 .timeline {
     width: calc(50% - 1em);
