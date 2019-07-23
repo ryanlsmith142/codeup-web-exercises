@@ -89,6 +89,7 @@ section:nth-of-type(3) {
 section:nth-of-type(3) h3 {
     /* enter needed declarations here */
     flex-grow: 1;
+    align-self: center;
 
 }
 
@@ -131,7 +132,7 @@ section:nth-of-type(6) {
     /* enter needed declarations here */
     flex-wrap: wrap;
     justify-content: space-between;
-    align-content: space-around;
+    /*align-content: space-around;*/
     align-items: center;
 
 
