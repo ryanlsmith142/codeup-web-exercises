@@ -63,5 +63,5 @@ body {
 }
 .destination {
     /* bigger item */
-    flex-basis: 100%;
+    flex-basis: 30%;
 }
