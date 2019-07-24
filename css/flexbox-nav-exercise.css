@@ -30,13 +30,14 @@ ul {
 }
 li {
     list-style: none;
-    padding-top:
 
 }
 
 ul li:not(.logo) {
     margin: 1em;
 }
+
+/* Main way */
 
 .logo {
     font-size: 3em;
@@ -45,5 +46,30 @@ ul li:nth-child(5) {
     margin-left: auto;
     margin-right: auto;
 }
+
+/* Bonus ways to center Logo*/
+/*ul li:nth-child(4) {*/
+/*    margin-right: auto;*/
+/*}*/
+
+/*ul li:nth-child(6) {*/
+/*    margin-left: auto;*/
+/*}*/
+
+/*.logo {*/
+/*    position: relative;*/
+/*    right: 50px;*/
+/*}*/
+
+/* Second bonus to center Logo */
+/*.logo {*/
+/*    display: flex;*/
+/*    margin: auto;*/
+/*}*/
+
+
+
+
+
 
 
