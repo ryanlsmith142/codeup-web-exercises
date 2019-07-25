@@ -31,7 +31,7 @@ ul {
 header {
     background: purple;
     /* TODO: define the grid area of header such that it takes up the first row and middle three columns */
-    grid-area: 1 / 2 / 2 / 6;
+    grid-area: 1 / 2 / 2 / 5;
 }
 
 nav {
