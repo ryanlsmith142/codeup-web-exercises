@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Layout-6</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            height: 100vh;
+            display: grid;
+            grid-template-rows: repeat(5, 1fr);
+            grid-template-columns: repeat(5, 1fr);
+            grid-template-areas:
+                    "header header header header header"
+                    "nav article article article article"
+                    "nav article article article article"
+                    "nav ads ads ads ads"
+                    "footer footer footer footer footer";
+            grid-gap: 10px;
+            padding: 10px;
+
+
+        }
+
+        .same-color {
+            background: #9ACD32;
+        }
+
+        header {
+            grid-area: header;
+        }
+        nav {
+            grid-area: nav;
+        }
+        article {
+            grid-area: article;
+        }
+        aside {
+            grid-area: ads;
+        }
+        footer {
+            grid-area: footer;
+        }
+
+
+    </style>
+
+</head>
+<body>
+<header class="same-color">Header</header>
+<nav class="same-color">Nav</nav>
+<article class="same-color">Article</article>
+<aside class="same-color">Ads</aside>
+<footer class="same-color">Footer</footer>
+</body>
+</html>
