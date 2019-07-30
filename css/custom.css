@@ -1,0 +1,12 @@
+.pizza {
+    background-image: url("../img/pizza.jpeg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    width: 100%;
+}
+h1 {
+    background: rgba(255,255,255, 0.5);
+    min-width: 100%;
+    text-align: center;
+
+}

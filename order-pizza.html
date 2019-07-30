@@ -4,7 +4,8 @@
     <meta charset="UTF-8">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.9.0/css/all.css">
-    <title>Order Pizza</title>
+    <link rel="stylesheet" href="css/custom.css"
+
 </head>
 <body>
     <header>
@@ -21,6 +22,72 @@
             <a href="#" class="ml-auto p-2 text-body"><i class="fas fa-user"></i></a>
             <a href="#" class="text-body">Sign Up</a>
         </nav>
+        <main class="px-0 container-fluid">
+
+            <section class="px-0 pizza jumbotron">
+            <h1 class="px-0">Welcome to Pizza World!</h1>
+            </section>
+
+            <h2>Build your own pizza!</h2>
+            <ul class="nav nav-tabs">
+                <li class="nav-item">
+                    <a href="#" class="nav-link active"><span class="badge badge-secondary">1</span>Size and crust</a>
+                </li>
+                <li class="nav-item">
+                    <a href="#" class="nav-link"><span class="badge badge-secondary">2</span>Cheese and Sauce</a>
+                </li>
+                <li class="nav-item">
+                    <a href="#" class="nav-link"><span class="badge badge-secondary">3</span>Toppings</a>
+                </li>
+            </ul>
+
+            <section class="card">
+                <h5 class="bg-primary card-title text-white">Choose size and crust</h5>
+                <div class="card-body">
+
+                    <ul class="list-group">
+                        <li class="bg-light list-group-item"><h5 class="card-title">Hand Tossed</h5></li>
+                        <li class="list-group-item">Garlic seasoned crust with a rich, buttery taste.</li>
+                        <li class="list-group-item">
+                            <input class="form-check-input" type="radio" name="hand-tossed" id="small" value="option1" checked>
+                            <label for="small">
+                                Small (10")
+                            </label>
+                        </li>
+                        <li class="list-group-item">
+                            <input class="form-check-input" type="radio" name="hand-tossed" id="medium" value="option2">
+                            <label for="medium">
+                                Medium (12")
+                            </label>
+                        </li>
+                    </ul>
+
+
+                </div>
+                <div class="card-body">
+                    <ul class="list-group">
+                        <li class="bg-light list-group-item"><h5 class="card-title">Crispy Thin</h5></li>
+                        <li class="list-group-item">Thin enough for optimum crispy to crunch ratio.</li>
+                        <li class="list-group-item">
+                            <input class="form-check-input" type="radio" name="hand-tossed" id="medium-thin" value="option1" checked>
+                            <label for="medium-thin">
+                                Medium (12")
+                            </label>
+                        </li>
+                        <li class="list-group-item">
+                            <input class="form-check-input" type="radio" name="hand-tossed" id="large-thin" value="option2">
+                            <label for="large-thin">
+                                Large (14")
+                            </label>
+                        </li>
+                    </ul>
+                </div>
+            </section>
+
+
+
+
+        </main>
     </header>
 
 
