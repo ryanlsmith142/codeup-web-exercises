@@ -13,7 +13,7 @@
             <a class="navbar-brand p-1" href="#">Pizza World</a>
             <a href="#" class="p-2 text-body">Order online</a>
             <a href="#" class="p-2 text-body">Menu</a>
-            <form class="form-inline p-2" method="GET" action="#">
+            <form class="form-inline p-2" method="GET" action="https://request-inspector.glitch.me/">
                 <label class="p-2" for="zip-code">
                     <input id="zip-code" name="zip-code" type="text" placeholder="Zip code">
                 </label>
@@ -25,7 +25,7 @@
 <!--Pizza Banner-->
         <main class="px-0 container-fluid">
 
-            <section class="px-0 pizza jumbotron">
+            <section class="px-0 pizza jumbotron d-none d-lg-block">
                 <h1 class="px-0">Welcome to Pizza World!</h1>
             </section>
 
@@ -33,17 +33,18 @@
             <h2>Build your own pizza!</h2>
             <ul class="nav nav-tabs" id="myTab" role="tablist">
                 <li class="nav-item">
-                    <a class="nav-link active" id="tab-1" data-toggle="tab" href="#size-crust" role="tab" aria-controls="home" aria-selected="true"><span class="badge badge-secondary">1</span>Size and Crust</a>
+                    <a class="nav-link active" id="tab-1" data-toggle="tab" href="#size-crust" role="tab" aria-controls="home" aria-selected="true"><span class="badge badge-pill badge-secondary mr-2">1</span>Size and Crust</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" id="tab-2" data-toggle="tab" href="#cheese-sauce" role="tab" aria-controls="profile" aria-selected="false"><span class="badge badge-secondary">2</span>Cheese and Sauce</a>
+                    <a class="nav-link" id="tab-2" data-toggle="tab" href="#cheese-sauce" role="tab" aria-controls="profile" aria-selected="false"><span class="badge badge-pill badge-secondary mr-2">2</span>Cheese and Sauce</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" id="tab-3" data-toggle="tab" href="#toppings" role="tab" aria-controls="contact" aria-selected="false"><span class="badge badge-secondary">3</span>Toppings</a>
+                    <a class="nav-link" id="tab-3" data-toggle="tab" href="#toppings" role="tab" aria-controls="contact" aria-selected="false"><span class="badge badge-pill badge-secondary mr-2">3</span>Toppings</a>
                 </li>
             </ul>
 <!--            Form for entire content-->
             <form method="POST" action="https://request-inspector.glitch.me/">
+
 <!--Tab 1-->
             <div class="tab-content" id="myTabContent">
                 <div class="tab-pane fade show active" id="size-crust" role="tabpanel" aria-labelledby="home-tab">
@@ -55,13 +56,13 @@
                             <ul class="list-group">
                                 <li class="bg-light list-group-item"><h5 class="card-title">Hand Tossed</h5></li>
                                 <li class="list-group-item">Garlic seasoned crust with a rich, buttery taste.</li>
-                                <li class="list-group-item">
+                                <li class="pl-5 list-group-item">
                                     <input class="form-check-input" type="radio" name="hand-tossed" id="small" value="option1" checked>
                                     <label for="small">
                                         Small (10")
                                     </label>
                                 </li>
-                                <li class="list-group-item">
+                                <li class="pl-5 list-group-item">
                                     <input class="form-check-input" type="radio" name="hand-tossed" id="medium" value="option2">
                                     <label for="medium">
                                         Medium (12")
@@ -74,13 +75,13 @@
                             <ul class="list-group">
                                 <li class="bg-light list-group-item"><h5 class="card-title">Crispy Thin</h5></li>
                                 <li class="list-group-item">Thin enough for optimum crispy to crunch ratio.</li>
-                                <li class="list-group-item">
+                                <li class="pl-5 list-group-item">
                                     <input class="form-check-input" type="radio" name="thin" id="medium-thin" value="option1" checked>
                                     <label for="medium-thin">
                                         Medium (12")
                                     </label>
                                 </li>
-                                <li class="list-group-item">
+                                <li class="pl-5 list-group-item">
                                     <input class="form-check-input" type="radio" name="thin" id="large-thin" value="option2">
                                     <label for="large-thin">
                                         Large (14")
@@ -90,7 +91,7 @@
                         </div>
 <!--Next Button-->
                         <div class="card-footer text-right">
-                            <button type="button" id="cheese-sauce" class="card-footer text-right bg-primary text-white">Next Step ></button>
+                            <button type="button" class="card-footer text-right bg-primary text-white">Next Step ></button>
                         </div>
                     </section>
                 </div>
@@ -166,7 +167,7 @@
                                 <!-- Item 1-->
                                 <li class="list-group-item">
                                     <div class="form-check">
-                                        <input name="beef" class="form-check-input" type="checkbox" value="beef" id="beef">
+                                        <input name="meats" class="form-check-input" type="checkbox" value="beef" id="beef">
                                         <label class="form-check-label" for="beef">
                                             Beef
                                         </label>
@@ -175,7 +176,7 @@
                                 <!--Item 2-->
                                 <li class="list-group-item">
                                     <div class="form-check">
-                                        <input name="ham" class="form-check-input" type="checkbox" value="ham" id="ham">
+                                        <input name="meats" class="form-check-input" type="checkbox" value="ham" id="ham">
                                         <label class="form-check-label" for="ham">
                                             Ham
                                         </label>
@@ -184,7 +185,7 @@
                                 <!--Item 3-->
                                 <li class="list-group-item">
                                     <div class="form-check">
-                                        <input name="steak" class="form-check-input" type="checkbox" value="steak" id="steak">
+                                        <input name="meats" class="form-check-input" type="checkbox" value="steak" id="steak">
                                         <label class="form-check-label" for="steak">
                                             Philly Steak
                                         </label>
@@ -193,7 +194,7 @@
                                 <!--Item 4-->
                                 <li class="list-group-item">
                                     <div class="form-check">
-                                        <input name="bacon" class="form-check-input" type="checkbox" value="bacon" id="bacon">
+                                        <input name="meats" class="form-check-input" type="checkbox" value="bacon" id="bacon">
                                         <label class="form-check-label" for="bacon">
                                         Bacon
                                         </label>
@@ -212,7 +213,7 @@
                                 <!--Item 1-->
                                 <li class="list-group-item">
                                     <div class="form-check">
-                                        <input name="green" class="form-check-input" type="checkbox" value="green" id="green">
+                                        <input name="non-meats" class="form-check-input" type="checkbox" value="green" id="green">
                                         <label class="form-check-label" for="green">
                                             Green Peppers
                                         </label>
@@ -222,7 +223,7 @@
                                 <!--Item 2-->
                                 <li class="list-group-item">
                                     <div class="form-check">
-                                        <input name="mushrooms" class="form-check-input" type="checkbox" value="mushrooms" id="mushrooms">
+                                        <input name="non-meats" class="form-check-input" type="checkbox" value="mushrooms" id="mushrooms">
                                         <label class="form-check-label" for="mushrooms">
                                             Mushrooms
                                         </label>
@@ -231,7 +232,7 @@
                                 <!--Item 3-->
                                 <li class="list-group-item">
                                     <div class="form-check">
-                                        <input name="onions" class="form-check-input" type="checkbox" value="onions" id="onions">
+                                        <input name="non-meats" class="form-check-input" type="checkbox" value="onions" id="onions">
                                         <label class="form-check-label" for="onions">
                                             Onions
                                         </label>
@@ -240,7 +241,7 @@
                                 <!--Item 4-->
                                 <li class="list-group-item">
                                     <div class="form-check">
-                                        <input name="jalapeno" class="form-check-input" type="checkbox" value="jalapeno" id="jalapeno">
+                                        <input name="non-meats" class="form-check-input" type="checkbox" value="jalapeno" id="jalapeno">
                                         <label class="form-check-label" for="jalapeno">
                                             Jalapeno Peppers
                                         </label>
