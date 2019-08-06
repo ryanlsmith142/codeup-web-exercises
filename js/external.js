@@ -85,6 +85,3 @@
 //     alert("Sorry the offer is not valid");
 // }
 
-
-
-
