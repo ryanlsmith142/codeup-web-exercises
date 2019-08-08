@@ -54,58 +54,61 @@
 
 //THIS IS FUNCTION ONE
 
-// function enterNumber() {
-//      if (confirm("Would you like to enter a number?")) {
-//          return prompt("Please enter a number");
-//      }
-// }
+function enterNumber() {
+     if (confirm("Would you like to enter a number?")) {
+         return prompt("Please enter a number");
+     }
+}
+
+var userEnteredNumber = Number(enterNumber());
 //
-// var userEnteredNumber = Number(enterNumber());
 //
+function isNumber(userNumber) {
+    if(isNaN(userNumber)) {
+        return "Hey that's not a number";
+    } else {
+        return "Hey that's a number";
+    }
+}
 //
-// function isNumber(userEnteredNumber) {
-//     if(isNaN(userEnteredNumber)) {
-//         return "Hey that's not a number";
-//     } else {
-//         return "Hey that's a number";
-//     }
-// }
-//
-// alert(isNumber(userEnteredNumber));
+alert(isNumber(userEnteredNumber));
 //
 // //THIS IS FUNCTION TWO
 //
-// function evenAlerts(userEnteredNumber) {
-//     if(userEnteredNumber % 2 === 0) {
-//         return "That's an even number!";
-//     } else {
-//         return "That's an odd number!";
-//     }
-// }
+function evenAlerts(userNumber) {
+    if(userNumber % 2 === 0) {
+        return "That's an even number!";
+    } else {
+        return "That's an odd number!";
+    }
+}
 //
-// alert(evenAlerts(userEnteredNumber));
+alert(evenAlerts(userEnteredNumber));
 //
 //
 // //THIS IS FUNCTION THREE
 //
-// function hundredPlusAlert(userEnteredNumber) {
-//     var hundredPlus = 100 + userEnteredNumber;
-//     return "This is your number plus 100: " + hundredPlus;
-// }
-//
-// alert(hundredPlusAlert(userEnteredNumber));
+function hundredPlusAlert(userNumber) {
+    var hundredPlus = 100 + userNumber;
+    return "This is your number plus 100: " + hundredPlus;
+}
+
+alert(hundredPlusAlert(userEnteredNumber));
 //
 // //THIS IS FUNCTION FOUR
 //
-// function posOrNegAlert(userEnteredNumber) {
-//     if(Math.sign(userEnteredNumber) === 1) {
-//         return "It's a positive number";
-//     } else {
-//         return "It's a negative number";
-//     }
-// }
-//
-// alert(posOrNegAlert(userEnteredNumber));
+function posOrNegAlert(userNumber) {
+    if(Math.sign(userNumber) === 1) {
+        return "It's a positive number";
+    } else {
+        return "It's a negative number";
+    }
+}
+
+alert(posOrNegAlert(userEnteredNumber));
+
+alert(posOrNegAlert(-1));
+
 
 
 
