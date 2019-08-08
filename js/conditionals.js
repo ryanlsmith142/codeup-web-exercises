@@ -51,63 +51,81 @@
 //Alerts that outputs strings and number
 
 //What are the conditions?
+//CODE THAT WORKS AS WELL
+// var enterNumber = confirm("Do you want to enter a number");
+//
+// function runScript() {
+//     if (enterNumber === true) {
+//         var num = +prompt("Enter any number");
+//
+//         if (isNaN(num)) {
+//             alert("That is not a number")
+//         } else {
+//             alert(evenAlerts(num));
+//             alert(hundredPlusAlert(num));
+//             alert(posOrNegAlert(num));
+//         }
+//
+//     } else {
+//         alert("Okay, goodbye!");
+//     }
+//
+// }
+//
+// runScript();
 
-//THIS IS FUNCTION ONE
+var willContinue = confirm("Will you enter a number?");
 
-function enterNumber() {
-     if (confirm("Would you like to enter a number?")) {
-         return prompt("Please enter a number");
-     }
-}
+var userEnteredNumber = +prompt("Please enter a number?");
 
-var userEnteredNumber = Number(enterNumber());
-//
-//
-function isNumber(userNumber) {
-    if(isNaN(userNumber)) {
-        return "Hey that's not a number";
-    } else {
-        return "Hey that's a number";
-    }
-}
-//
-alert(isNumber(userEnteredNumber));
-//
-// //THIS IS FUNCTION TWO
-//
-function evenAlerts(userNumber) {
-    if(userNumber % 2 === 0) {
-        return "That's an even number!";
-    } else {
-        return "That's an odd number!";
-    }
-}
-//
-alert(evenAlerts(userEnteredNumber));
-//
-//
+
+if (willContinue && !isNaN(userEnteredNumber)) {
+        function isNumber(userNumber) {
+            if (isNaN(userNumber)) {
+                return alert("Hey that's not a number");
+            } else {
+                return "Hey that's a number";
+            }
+        }
+
+        alert(isNumber(userEnteredNumber));
+
+// //THIS IS FUNCTION ONE
+
+        function evenAlerts(userNumber) {
+            if (userNumber % 2 === 0) {
+                return "That's an even number!";
+            } else {
+                return "That's an odd number!";
+            }
+        }
+
+        alert(evenAlerts(userEnteredNumber));
+
+// THIS IS FUNCTION TWO
+
+        function hundredPlusAlert(userNumber) {
+            var hundredPlus = 100 + userNumber;
+            return "This is your number plus 100: " + hundredPlus;
+        }
+
+        alert(hundredPlusAlert(userEnteredNumber));
+
 // //THIS IS FUNCTION THREE
-//
-function hundredPlusAlert(userNumber) {
-    var hundredPlus = 100 + userNumber;
-    return "This is your number plus 100: " + hundredPlus;
-}
 
-alert(hundredPlusAlert(userEnteredNumber));
-//
-// //THIS IS FUNCTION FOUR
-//
-function posOrNegAlert(userNumber) {
-    if(Math.sign(userNumber) === 1) {
-        return "It's a positive number";
-    } else {
-        return "It's a negative number";
+        function posOrNegAlert(userNumber) {
+            if (Math.sign(userNumber) === 1) {
+                return "It's a positive number";
+            } else {
+                return "It's a negative number";
+            }
+        }
+
+        alert(posOrNegAlert(userEnteredNumber));
+
     }
-}
 
-alert(posOrNegAlert(userEnteredNumber));
 
-alert(posOrNegAlert(-1));
 
 
 
@@ -330,40 +348,40 @@ var randomColor = colors[Math.floor(Math.random() * colors.length)];
  *
  * and what their price after the discount is.
  */
-// Generate a random number between 0 and 6
-var luckyNumber = Math.floor(Math.random() * 6);
-
-var totalAmount = +prompt("What was your total bill?");
-
-function calculateTotal(luckyNumber, totalAmount) {
-    if (luckyNumber === 0) {
-        return "No discount";
-    } else if (luckyNumber === 1) {
-        return totalAmount - (totalAmount * .10);
-    } else if (luckyNumber === 2) {
-        return totalAmount - (totalAmount * .25);
-    } else if (luckyNumber === 3) {
-        return totalAmount - (totalAmount * .35);
-    } else if (luckyNumber === 4) {
-        return totalAmount - (totalAmount * .50);
-    } else if (luckyNumber === 5) {
-        return 0;
-    } else {
-        return "Hey there buckaroo that doesn't look like a lucky number";
-    }
-}
-
-var discountedPrice = calculateTotal(luckyNumber, totalAmount);
-
-
-
-function userAlert(luckyNumber, totalAmount, discountedPrice) {
-    alert("Your lucky number was: " + luckyNumber);
-
-    alert("Your total price before discount was $ " + totalAmount);
-
-    alert("Your discounted price is $ " + discountedPrice);
-
-}
-
-userAlert(luckyNumber, totalAmount, discountedPrice);
+// // Generate a random number between 0 and 6
+// var luckyNumber = Math.floor(Math.random() * 6);
+//
+// var totalAmount = +prompt("What was your total bill?");
+//
+// function calculateTotal(luckyNumber, totalAmount) {
+//     if (luckyNumber === 0) {
+//         return "No discount";
+//     } else if (luckyNumber === 1) {
+//         return totalAmount - (totalAmount * .10);
+//     } else if (luckyNumber === 2) {
+//         return totalAmount - (totalAmount * .25);
+//     } else if (luckyNumber === 3) {
+//         return totalAmount - (totalAmount * .35);
+//     } else if (luckyNumber === 4) {
+//         return totalAmount - (totalAmount * .50);
+//     } else if (luckyNumber === 5) {
+//         return 0;
+//     } else {
+//         return "Hey there buckaroo that doesn't look like a lucky number";
+//     }
+// }
+//
+// var discountedPrice = calculateTotal(luckyNumber, totalAmount);
+//
+//
+//
+// function userAlert(luckyNumber, totalAmount, discountedPrice) {
+//     alert("Your lucky number was: " + luckyNumber);
+//
+//     alert("Your total price before discount was $ " + totalAmount);
+//
+//     alert("Your discounted price is $ " + discountedPrice);
+//
+// }
+//
+// userAlert(luckyNumber, totalAmount, discountedPrice);
