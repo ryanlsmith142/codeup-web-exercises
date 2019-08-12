@@ -19,26 +19,9 @@ function showMultiplicationTable(number) {
 //     }
 // }
 
-// for(var i = 1; i < 10;i++) {
-//     var output = "";
-//     for (var j = 1; j <= i; j++) {
-//         output += j.toString() + i.toString() + "";
-//     }
-//     console.log(output);
-// }
-
-
-// for(var i = 1;i <= 10; i++) {
-//     var output = "";
-//     output += i.toString() + i.toString() + "";
-//     console.log(output);
-// }
-
-
-
 for(var x = 1; x <= 9; x++) {
 
-    output='';
+    output = '';
 
     for (y = 0; y < x; y++)
     {
@@ -48,3 +31,10 @@ for(var x = 1; x <= 9; x++) {
     console.log(output);
 
 }
+
+
+    // for(var i = 100; i > 0;) {
+    //     console.log(i);
+    //     i = i - 5;
+    // }
+
