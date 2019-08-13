@@ -1,20 +1,19 @@
 "use strict";
 
-function isNumeric(input) {
-    return !isNaN(parseFloat(input));
-}
+var userNumber = prompt("give me an odd number!");
 
-// while ()
-// do {
-//     var numberSkip = prompt("Give me an odd number");
-// // } while (isNaN(numberSkip));
-//
-// console.log(isNumeric("3"));
+for (var i = 1; 1 <= 50; i++) {
+    if (i % 2 === 0) {
+        continue;
+    }
 
-var userNumber = prompt("give me a number");
+    if (parseFloat(userNumber) === i) {
+        console.log('Yikes! Skipping number: ' + i);
+    } else {
+        console.log("Here is an odd number: " + i);
+    }
 
-console.log(isNumeric(userNumber));
-
-while(isNumeric(userNumber)) {
-    console.log(userNumber);
+    if (i >= 49) {
+        break;
+    }
 }
