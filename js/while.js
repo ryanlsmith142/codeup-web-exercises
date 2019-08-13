@@ -24,8 +24,9 @@ do {
         allCones = allCones - customerCones;
     }
     console.log(allCones);
-} while (allCones > 0) {
-    console.log("Yay, I sold them all");
-}
+} while (allCones > 0)
+
+console.log("Yay, I sold them all");
+
 
 
