@@ -1,9 +1,5 @@
 "use strict";
 
-function isString(value) {
-    return typeof value == "string";
-}
-
 var userNumber;
 var parsedInput;
 
@@ -15,7 +11,7 @@ while(userNumber % 2 === 0 || parsedInput < 0 || isNaN(parsedInput));
 
     console.log("Number to skip is: " + userNumber);
 
-    for (var i = 1; 1 <= 50; i++) {
+    for (var i = 1; i <= 50; i++) {
         if (i % 2 === 0) {
             continue;
         }
