@@ -56,19 +56,19 @@
      * and console.log the relevant messages for each person
      */
 
-    var shoppers = [
-        {name: 'Cameron', amount: 180},
-        {name: 'Ryan', amount: 250},
-        {name: 'George', amount: 320}
-    ];
-
-
+    // var shoppers = [
+    //     {name: 'Cameron', amount: 180},
+    //     {name: 'Ryan', amount: 250},
+    //     {name: 'George', amount: 320}
+    // ];
+    //
+    //
     // shoppers.forEach(function(element) {
     //     console.log(element.name + " you need to pay: " + element.amount + " dollars");
     //
     //     if(element.amount > 200 ) {
     //         console.log(element.name + " , you get a discount of 12%");
-    //         console.log(element.name + " , your total after the discount is " + (element.amount * .12));
+    //         console.log(element.name + " , your total after the discount is " + (element.amount - (element.amount * .12)));
     //     }
     // });
 
@@ -109,7 +109,6 @@
      * > console.log(books[0].author.firstName) // "Douglas"
      * > console.log(books[0].author.lastName) // "Adams"
      */
-
 
 
     // var books = [
@@ -171,7 +170,7 @@
      */
 
 
-
+    //
     // books.forEach(function(element, i) {
     //    console.log("Book # " + (i + 1));
     //    console.log("Title: " + element.title);
@@ -219,7 +218,7 @@
     books.push(createBook("Who am I?", "Dr. Phil"));
     books.push(createBook("What am I?", "Conan"));
 
-    // console.log(books);
+    console.log(books);
 
     function showBookInfo(book) {
 
