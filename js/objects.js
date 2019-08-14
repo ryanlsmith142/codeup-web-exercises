@@ -112,33 +112,33 @@
 
 
 
-    var books = [
-        {title: "Harry Potter",
-            author:{
-                firstName: "George",
-                lastName: "Washington"
-            }},
-        {title: "Lord of the Rings",
-            author:{
-                firstName: "Barbara",
-                lastName: "Streisand"
-            }},
-        {title: "Where the Red Fern Grows",
-            author:{
-                firstName: "Winston",
-                lastName: "Churchill"
-            }},
-        {title: "One Flew Over the Cuckoo's Nest",
-            author:{
-                firstName: "Smedley",
-                lastName: "Butler"
-            }},
-        {title: "Rise and Fall of the Roman Empire",
-            author:{
-                firstName: "Charlie",
-                lastName: "Chaplin"
-            }}
-    ];
+    // var books = [
+    //     {title: "Harry Potter",
+    //         author:{
+    //             firstName: "George",
+    //             lastName: "Washington"
+    //         }},
+    //     {title: "Lord of the Rings",
+    //         author:{
+    //             firstName: "Barbara",
+    //             lastName: "Streisand"
+    //         }},
+    //     {title: "Where the Red Fern Grows",
+    //         author:{
+    //             firstName: "Winston",
+    //             lastName: "Churchill"
+    //         }},
+    //     {title: "One Flew Over the Cuckoo's Nest",
+    //         author:{
+    //             firstName: "Smedley",
+    //             lastName: "Butler"
+    //         }},
+    //     {title: "Rise and Fall of the Roman Empire",
+    //         author:{
+    //             firstName: "Charlie",
+    //             lastName: "Chaplin"
+    //         }}
+    // ];
 
 
     /**
@@ -172,26 +172,68 @@
 
 
 
-    books.forEach(function(element, i) {
-       console.log("Book # " + (i + 1));
-       console.log("Title: " + element.title);
-       console.log("Author: " + element.author.firstName + " " + element.author.lastName);
-    });
+    // books.forEach(function(element, i) {
+    //    console.log("Book # " + (i + 1));
+    //    console.log("Title: " + element.title);
+    //    console.log("Author: " + element.author.firstName + " " + element.author.lastName);
+    // });
 
 
 
 
     /**
      * Bonus:
-     * - Create a function named `createBook` that accepts a title and author
-     *   name and returns a book object with the properties described
-     *   previously. Refactor your code that creates the books array to instead
+     * - Create a function named `createBook`
+     * that accepts a title and author
+     *   name
+     *   and returns a book object with the properties described
+     *   previously.
+     *
+     *   Refactor your code that creates the books array to instead
      *   use your function.
-     * - Create a function named `showBookInfo` that accepts a book object and
-     *   outputs the information described above. Refactor your loop to use your
+     *
+     * - Create a function named `showBookInfo`
+     *
+     * that accepts a book object
+     * and
+     *   outputs the information described above.
+     *
+     *   Refactor your loop to use your
      *   `showBookInfo` function.
      */
 
+
+    function createBook(mainTitle, mainAuthor) {
+       return {
+            Title: mainTitle,
+            Author: mainAuthor
+        };
+
+    }
+
+    // console.log(createBook("Harry Potter", "George Washington"));
+
+    var books = [];
+
+    books.push(createBook("Where am I?", "Waldo"));
+    books.push(createBook("Who am I?", "Dr. Phil"));
+    books.push(createBook("What am I?", "Conan"));
+
+    // console.log(books);
+
+    function showBookInfo(book) {
+
+        console.log( "Title: " + book.Title);
+        console.log("Author: " + book.Author);
+    }
+
+    books.forEach( function(book) {
+        showBookInfo(book);
+    })
+
+    //EXAMPLE CODE TO ASSIGN AN OBJECT TO AN OBJECT
+
+    // const returnedTarget = Object.assign(target, source);
 
 
 
