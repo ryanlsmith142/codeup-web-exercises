@@ -16,6 +16,8 @@
         lastName: "Smith"
     };
 
+    console.log(person.firstName);
+    console.log(person.lastName);
 
     /**
      * TODO:
