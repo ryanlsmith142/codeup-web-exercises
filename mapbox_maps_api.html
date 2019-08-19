@@ -8,7 +8,16 @@
 
 </head>
 <body>
-    <div id='map' style='width: 400px; height: 300px;'></div>
+    <div id='map' style='width: 500px; height: 800px;'></div>
+
+    <h4>Zoom in/out</h4>
+    <form>
+        <select>
+            <option onchange="zoomInOut(5)" id="5" value="5">5</option>
+            <option onchange="zoomInOut(10)" id="10" value="10">10</option>
+            <option onchange="zoomInOut(15)" id="15" value="15">15</option>
+        </select>
+    </form>
 
     <script src="js/keys.js"></script>
     <script src='https://api.tiles.mapbox.com/mapbox-gl-js/v1.2.1/mapbox-gl.js'></script>
@@ -27,22 +36,33 @@
             {
                 name: "El Sabor De Sanchez",
                 type: "Colombian",
-                coordinates: [-98.661885, 29.511448]
+                coordinates: [-98.661885, 29.511448],
+                why: "Feels " +
+                    "" +
+                    "like I'm back in Colombia",
+                dish: "The Tamales are tamalazing",
+                img: "img/laptop.jpeg"
             },
             {
                 name: "Chik-Fil-A",
                 type: "Fast-good food",
-                coordinates: [-98.702142, 29.435271]
+                coordinates: [-98.702142, 29.435271],
+                why: 'Better than McDonalds',
+                dish: 'Chicken wrap is where it\'s at',
+                img: "img/laptop.jpeg"
             },
             {
                 name: "Olive Garden",
                 type: "Okay Italian, Go for the breadsticks",
-                coordinates: [-98.708344, 29.489434]
+                coordinates: [-98.708344, 29.489434],
+                why: 'Bottomless breadsticks, bottomless salad',
+                dish: 'Bottomless breadsticks, bottomless salad',
+                img: "img/laptop.jpeg"
             }
         ];
 
-        function zoomInOut(number) {
-            map.setZoom(number);
+        onchange = function zoomInOut() {
+            map.setZoom(20);
         }
 
         // zoomInOut(15);
@@ -52,7 +72,13 @@
                 .setLngLat(array.coordinates)
                 .addTo(map);
             var popup = new mapboxgl.Popup()
-                .setHTML(array.name);
+                .setHTML('<h1>' + array.name + '</h1><br>' +
+                        '<p>' + 'Type: ' + array.type + '</p><br>' +
+                        '<p>' + 'Why it\'s amazing: ' + array.why + '</p><br>' +
+                        '<p>' + 'Best dish: ' + array.dish + '</p><br>' + array.img
+
+
+                )
             marker.setPopup(popup);
 
         }
@@ -68,6 +94,11 @@
         restaurants.forEach(function(restaurant) {
            setMarker(restaurant);
         });
+
+
+
+
+
 
 
 
