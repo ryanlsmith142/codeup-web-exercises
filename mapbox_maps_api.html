@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Mapbox Maps API</title>
+
+    <link href='https://api.tiles.mapbox.com/mapbox-gl-js/v1.2.1/mapbox-gl.css' rel='stylesheet' />
+
+</head>
+<body>
+    <div id='map' style='width: 400px; height: 300px;'></div>
+
+    <script src="js/keys.js"></script>
+    <script src='https://api.tiles.mapbox.com/mapbox-gl-js/v1.2.1/mapbox-gl.js'></script>
+    <script src="js/mapbox-utils.js"></script>
+
+    <script>
+        mapboxgl.accessToken = mapboxToken;
+        var map = new mapboxgl.Map({
+            container: 'map',
+            style: 'mapbox://styles/mapbox/streets-v9',
+            zoom: 9,
+            center: [-98.4936, 29.4241]
+        });
+
+        var restaurants = [
+            {
+                name: "El Sabor De Sanchez",
+                type: "Colombian",
+                coordinates: [-98.661885, 29.511448]
+            },
+            {
+                name: "Chik-Fil-A",
+                type: "Fast-good food",
+                coordinates: [-98.702142, 29.435271]
+            },
+            {
+                name: "Olive Garden",
+                type: "Okay Italian, Go for the breadsticks",
+                coordinates: [-98.708344, 29.489434]
+            }
+        ];
+
+        function zoomInOut(number) {
+            map.setZoom(number);
+        }
+
+        // zoomInOut(15);
+
+        function setMarker(array) {
+            var marker = new mapboxgl.Marker()
+                .setLngLat(array.coordinates)
+                .addTo(map);
+            var popup = new mapboxgl.Popup()
+                .setHTML(array.name);
+            marker.setPopup(popup);
+
+        }
+
+        // setMarker(restaurants);
+
+
+        // geocode("5439 W Loop 1604 N, San Antonio, TX 78253", mapboxToken).then(function(result) {
+        //    console.log(result);
+        //
+        // });
+
+        restaurants.forEach(function(restaurant) {
+           setMarker(restaurant);
+        });
+
+
+
+    </script>
+
+</body>
+</html>
