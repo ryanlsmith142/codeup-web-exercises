@@ -10,24 +10,25 @@
 
 <script src="js/keys.js"></script>
 <script src='https://api.tiles.mapbox.com/mapbox-gl-js/v1.2.1/mapbox-gl.js'></script>
-
+<script src="js/mapbox-utils.js"></script>
 <script>
     mapboxgl.accessToken = mapboxToken;
     var map = new mapboxgl.Map({
         container: 'map',
         style: 'mapbox://styles/mapbox/streets-v9',
         zoom: 12,
-        center: [-77.0369, 38.9072]
+        center: [-98.4916, 29.4252]
     });
 
-    var marker = new mapboxgl.Marker();
-    marker.setLngLat([-77.0502, 38.8893]);
-    marker.addTo(map);
+    geocode("Whitefish, Montana", mapboxToken).then(function(result) {
+        console.log(result);
+        map.setCenter(result);
+        map.setZoom(10);
+    });
 
-    var popup = new mapboxgl.Popup()
-        .setHTML("<p>Lincoln Memorial</p>")
-
-    marker.setPopup(popup)
+    reverseGeocode({lng: -157.8060, lat: 21.2620}, mapboxToken).then(function(result) {
+        console.log(result);
+    });
 </script>
 </body>
 </html>
