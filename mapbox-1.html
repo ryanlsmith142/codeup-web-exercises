@@ -9,21 +9,20 @@
 
     <div id='map' style='width: 400px; height: 300px;'></div>
 
-
+    <script src="js/keys.js"></script>
     <script src='https://api.tiles.mapbox.com/mapbox-gl-js/v1.2.1/mapbox-gl.js'></script>
 
     <script>
-        mapboxgl.accessToken = 'pk.eyJ1IjoicnlhbmxzbWl0aDE0MiIsImEiOiJjanppaGFtb20xNnZiM21udzBzZ3QzYzZ3In0.85BrBbYUEIl0EaJnRI6EGg';
+        mapboxgl.accessToken = mapboxToken;
         var map = new mapboxgl.Map({
             container: 'map',
             style: 'mapbox://styles/mapbox/streets-v9',
             zoom: 10,
-            center: [-94.8255, 38.7431],
-
+            center: [-94.8255, 38.7431]
         });
 
         setTimeout(function() {
-            mapboxgl.accessToken = 'pk.eyJ1IjoicnlhbmxzbWl0aDE0MiIsImEiOiJjanppaGFtb20xNnZiM21udzBzZ3QzYzZ3In0.85BrBbYUEIl0EaJnRI6EGg';
+            mapboxgl.accessToken = mapboxToken;
             var map = new mapboxgl.Map({
                 container: 'map',
                 style: 'mapbox://styles/mapbox/satellite-v9',
