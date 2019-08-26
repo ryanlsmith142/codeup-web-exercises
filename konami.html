@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Konami Code</title>
+    <style>
+        .video {
+            border: 20px solid black;
+            border-radius: 20%;
+        }
+
+        .three-amigos {
+            border: none;
+        }
+        .main-div {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        /*GLOW EFFECT*/
+        .glow {
+            font-size: 40px;
+            color: #fff;
+            text-align: center;
+            -webkit-animation: glow 1s ease-in-out infinite alternate;
+            -moz-animation: glow 1s ease-in-out infinite alternate;
+            animation: glow 1s ease-in-out infinite alternate;
+        }
+
+        @-webkit-keyframes glow {
+            from {
+                text-shadow: 0 0 2px #fff, 0 0 4px #fff, 0 0 6px #418207, 0 0 8px #418207, 0 0 10px #418207, 0 0 15px #418207, 0 0 20px #418207;
+            }
+            to {
+                text-shadow: 0 0 5px #fff, 0 0 10px #418207, 0 0 15px #418207, 0 0 20px #418207, 0 0 25px #418207, 0 0 30px #418207, 0 0 35px #418207;
+            }
+        }
+
+
+
+    </style>
+</head>
+<body>
+<h1>Konami Code</h1>
+
+<div id="textHolder" class="main-div"></div>
+
+<script src="js/jquery-2.2.4.js"></script>
+<script>
+
+    // $(document).ready(function() {
+        "use strict";
+
+        //ARRAY OF KEYS ENTERED BY USER---------------------------------------------
+
+        var registerKeys = [];
+
+        //FUNCTION REGISTERS USER KEY INPUT------------------------------------------
+
+        $(document).keyup(function(event){
+
+            //ARRAY OF A STRING OF KONAMI CODE--------------------------------------------
+
+            var konamiCode = ['ArrowUp,ArrowUp,ArrowDown,ArrowDown,ArrowLeft,ArrowRight,ArrowLeft,ArrowRight,b,a,Enter'];
+
+            //ADDS USER INPUT TO A registerKeys ARRAY---------------------------------
+
+            registerKeys.push(event.key);
+
+            //CHECKS IF KONAMI CODE COMBINATION IS IN ARRAY----------------------------
+
+            if(registerKeys.toString().indexOf(konamiCode) >= 0) {
+
+                //ADD GIPHY
+
+                $('#textHolder').html('<iframe src="https://giphy.com/embed/TTy5YmVmhmWhq" class="video" width="355" height="480"></iframe>');
+
+                $('html').css('background', 'black');
+
+                $('h1').addClass('glow');
+
+
+                var div = $(".video");
+                div.animate({opacity: '0.4'}, "slow");
+                div.animate({opacity: '0.8'}, "slow");
+                div.animate({opacity: '0.4'}, "slow");
+                div.animate({opacity: '0.8'}, "slow");
+
+
+            } //end of outer if statement
+
+        }); //end of keyup function
+
+    // }); //end of ready function
+</script>
+</body>
+</html>
