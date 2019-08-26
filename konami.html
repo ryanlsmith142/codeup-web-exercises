@@ -2,15 +2,13 @@
 <html>
 <head>
     <title>Konami Code</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.9.0/css/all.css">
     <style>
         .video {
-            border: 20px solid black;
             border-radius: 20%;
+            border: 5px solid #110E12;
         }
 
-        .three-amigos {
-            border: none;
-        }
         .main-div {
             display: flex;
             justify-content: center;
@@ -35,9 +33,6 @@
                 text-shadow: 0 0 5px #fff, 0 0 10px #418207, 0 0 15px #418207, 0 0 20px #418207, 0 0 25px #418207, 0 0 30px #418207, 0 0 35px #418207;
             }
         }
-
-
-
     </style>
 </head>
 <body>
@@ -48,8 +43,15 @@
 <script src="js/jquery-2.2.4.js"></script>
 <script>
 
-    // $(document).ready(function() {
+    $(document).ready(function() {
         "use strict";
+
+        $(document).on ('keypress', function(event) {
+            if(event.which === 32) {
+                $('#textHolder').html('<i class="fas fa-arrow-up"></i>');
+            }//end of if statement
+            $(this).off('keypress');
+        });//end of on function
 
         //ARRAY OF KEYS ENTERED BY USER---------------------------------------------
 
@@ -75,7 +77,7 @@
 
                 $('#textHolder').html('<iframe src="https://giphy.com/embed/TTy5YmVmhmWhq" class="video" width="355" height="480"></iframe>');
 
-                $('html').css('background', 'black');
+                $('html').css('background', '#110E12');
 
                 $('h1').addClass('glow');
 
@@ -85,13 +87,19 @@
                 div.animate({opacity: '0.8'}, "slow");
                 div.animate({opacity: '0.4'}, "slow");
                 div.animate({opacity: '0.8'}, "slow");
+                div.animate({opacity: '0.8'}, "slow");
+                div.animate({opacity: '0.8'}, "slow");
+                div.animate({opacity: '0.8'}, "slow");
+                div.animate({opacity: '0.8'}, "slow");
+                div.animate({opacity: '0.8'}, "slow");
+                div.animate({opacity: '0.8'}, "slow");
 
 
             } //end of outer if statement
 
         }); //end of keyup function
 
-    // }); //end of ready function
+    }); //end of ready function
 </script>
 </body>
 </html>
