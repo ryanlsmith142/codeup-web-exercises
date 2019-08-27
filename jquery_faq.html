@@ -11,6 +11,47 @@
         .highlight {
             background: red;
         }
+
+        #picture-parent {
+            display: flex;
+            justify-content: center;
+
+        }
+        .picture-frame {
+            border: 20px solid burlywood;
+            height: 300px;
+            width: 300px;
+            margin: 10px;
+        }
+
+        .picture-one {
+            background-image: url("img/frame1.jpeg");
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
+
+        .picture-two {
+            background-image: url("img/laptop.jpeg");
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
+
+        .picture-three {
+            background-image: url("img/pizza.jpeg");
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
+        #frame-one {
+
+        }
+
+        #frame-two {
+
+        }
+
+        #frame-three {
+
+        }
     </style>
 </head>
 <body>
@@ -89,6 +130,22 @@
 
     <button class="facts-button">Click for some fun fact action!</button>
 
+    <!--PICTURE FRAMES-->
+    <div id="picture-parent">
+
+        <!--PICTURE FRAME ONE-->
+        <div id="frame-one" class="picture-frame"></div>
+
+        <!--PICTURE FRAME TWO-->
+        <div id="frame-two" class="picture-frame"></div>
+
+        <!--PICTURE FRAME THREE-->
+        <div id="frame-three" class="picture-frame"></div>
+
+    </div>
+
+    <button class="picture-button">The ol' switcheroo</button>
+    <button class="picture-button2">Another switcheroo</button>
     <!--JAVASCRIPT-->
 
     <script src="js/jquery-2.2.4.js"></script>
@@ -116,20 +173,66 @@
 
             //SECOND JAVASCRIPT EXERCISE
 
+
+            //Highlight
+
             $('.facts-button').click(function() {
                 $('ul').each(function() {
                     $(this).children().last().css('background', 'yellow');
                 }); //end of each method
             }); //end of click method
 
+            //Bold text
 
             $('h3').click(function() {
                 $(this).next().children().css('font-weight', 'bold');
             }); //end of click method
 
+            //Blue text
+
             $('li').click(function() {
                 $(this).parent().children().first().css('color', 'blue');
             }); //end of click method
+
+            //SECOND EXERCISES BONUS PICTURE FRAMES
+
+            var randomNumber = Math.floor((Math.random() * 2) + 1);
+
+            $('#frame-one').addClass('picture-one');
+            $('#frame-two').addClass('picture-two');
+            $('#frame-three').addClass('picture-three');
+
+            $('.picture-button').click(function() {
+                $('#frame-one').removeClass('picture-one');
+                $('#frame-one').next().removeClass('picture-two');
+                $('#frame-one').addClass('picture-two');
+                $('#frame-two').addClass('picture-one');
+            }); //end of click method
+
+            $('.picture-button2').click(function() {
+                if(randomNumber === 1) {
+                    $('#frame-two').next().removeClass('picture-three');
+                    $('#frame-two').removeClass('picture-one');
+                    $('#frame-two').addClass('picture-three');
+                    $('#frame-three').addClass('picture-one');
+                } else {
+                    $('#frame-one').removeClass('picture-two');
+                    $('#frame-two').removeClass('picture-one');
+                    $('#frame-two').addClass('picture-two');
+                    $('#frame-one').addClass('picture-one');
+                }
+
+            });//end of click method
+
+
+
+
+
+
+
+
+
+
 
 
         }); //end of ready function
