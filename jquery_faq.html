@@ -55,32 +55,77 @@
         <dt>Joshua National Park</dt>
         <dd><a href="https://www.nps.gov/jotr/faqs.htm">FAQ</a></dd>
     </dl>
+
     <a class="makeMe" href="#">Click me for invisibility and lack therof</a>
-    <button>I like invisible stuff</button>
+    <button class="invisible-button">I like invisible stuff</button>
+
+    <!--PARK 1-->
+
+    <h3>Joshua National Park</h3>
+    <ul>
+        <li>Designated national monument in 1936 by Franklin Delano Roosevelt.</li>
+        <li>Accorded national park status in 1994.</li>
+        <li>Named for the Joshua Trees (Yucca brevifolia) native to the park.</li>
+        <li>Covers an area of 3,200 square kilometers</li>
+    </ul>
+    <!--PARK 2-->
+
+    <h3>Glacier National Park</h3>
+    <ul>
+        <li>World's first international peace park.</li>
+        <li>Evidence of human use in the area dates back over 12,000 years.</li>
+        <li>Has welcomed over 100 million visitors to the park.</li>
+        <li>Largest glacier in the park is 0.7 square miles.</li>
+    </ul>
+    <!--PARK 3-->
+
+    <h3>Grand Teton National Park</h3>
+    <ul>
+        <li>40-mile-long Teton Range is the youngest range in the Rocky Mountains.</li>
+        <li>There's a commercial airport on park grounds.</li>
+        <li>Pronghorns reside there, which are the fastest land animal in the western hemisphere.</li>
+        <li>Park once provoked a cattle-drive protest.</li>
+    </ul>
+
+    <button class="facts-button">Click for some fun fact action!</button>
+
+    <!--JAVASCRIPT-->
+
     <script src="js/jquery-2.2.4.js"></script>
     <script>
-        // $('dd').addClass('invisible');
-        // $('.invisible').css('visibility', 'hidden');
 
-        $('.makeMe').click(function() {
-            $('dd').toggleClass('invisible');
-        });
 
-        $('button').click(function() {
+        $(document).ready(function() {
+            //FIRST JAVASCRIPT EXERCISE
+
+            // $('dd').addClass('invisible');
             // $('.invisible').css('visibility', 'hidden');
-            $('dd').toggleClass('invisible');
-        });
 
-        // $('dt').on('click', function() {
-        //     $(this).addClass('highlight');
-        //
-        //     if($('dt').hasClass('highlight')) {
-        //         $(this).css({
-        //             "background": "white"
-        //         }) //end of css object
-        //     } // end of if statement
-        //
-        // });
+            $('.makeMe').click(function() {
+                $('dd').toggleClass('invisible');
+            });
+
+            $('.invisible-button').click(function() {
+                // $('.invisible').css('visibility', 'hidden');
+                $('dd').toggleClass('invisible');
+            });
+
+            $('dt').on('click', function() {
+                $(this).addClass('highlight');
+            });
+
+            //SECOND JAVASCRIPT EXERCISE
+
+            $('.facts-button').click(function() {
+                $('ul').each(function() {
+                    $(this).children().last().css('background', 'yellow');
+                }); //end of each method
+            }) //end of click method
+
+
+
+
+        }); //end of ready function
 
 
 
