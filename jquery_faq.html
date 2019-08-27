@@ -120,9 +120,16 @@
                 $('ul').each(function() {
                     $(this).children().last().css('background', 'yellow');
                 }); //end of each method
-            }) //end of click method
+            }); //end of click method
 
 
+            $('h3').click(function() {
+                $(this).next().children().css('font-weight', 'bold');
+            }); //end of click method
+
+            $('li').click(function() {
+                $(this).parent().children().first().css('color', 'blue');
+            }); //end of click method
 
 
         }); //end of ready function
