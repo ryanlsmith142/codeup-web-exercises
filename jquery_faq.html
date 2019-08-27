@@ -7,6 +7,10 @@
         .invisible {
             visibility: hidden;
         }
+
+        .highlight {
+            background: red;
+        }
     </style>
 </head>
 <body>
@@ -51,17 +55,36 @@
         <dt>Joshua National Park</dt>
         <dd><a href="https://www.nps.gov/jotr/faqs.htm">FAQ</a></dd>
     </dl>
-
+    <a class="makeMe" href="#">Click me for invisibility and lack therof</a>
     <button>I like invisible stuff</button>
     <script src="js/jquery-2.2.4.js"></script>
     <script>
         // $('dd').addClass('invisible');
         // $('.invisible').css('visibility', 'hidden');
 
+        $('.makeMe').click(function() {
+            $('dd').toggleClass('invisible');
+        });
+
         $('button').click(function() {
             // $('.invisible').css('visibility', 'hidden');
             $('dd').toggleClass('invisible');
-        })
+        });
+
+        // $('dt').on('click', function() {
+        //     $(this).addClass('highlight');
+        //
+        //     if($('dt').hasClass('highlight')) {
+        //         $(this).css({
+        //             "background": "white"
+        //         }) //end of css object
+        //     } // end of if statement
+        //
+        // });
+
+
+
+
 
 
     </script>
