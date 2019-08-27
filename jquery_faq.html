@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>jQuery FAQ</title>
+    <style>
+        .invisible {
+            visibility: hidden;
+        }
+    </style>
+</head>
+<body>
+    <dl>
+        <!--PARK ONE-->
+        <dt>Yellowstone National Park</dt>
+        <dd><a href="https://www.yellowstonepark.com/park/faqs">FAQ</a></dd>
+
+        <!--PARK TWO-->
+        <dt>Grand Canyon National Park</dt>
+        <dd><a href="https://www.nps.gov/grca/planyourvisit/basicinfo.htm">FAQ</a></dd>
+
+        <!--PARK THREE-->
+        <dt>Yosemite National Park</dt>
+        <dd><a href="https://www.nps.gov/yose/faqs.htm">FAQ</a></dd>
+
+        <!--PARK FOUR-->
+        <dt>Zion National Park</dt>
+        <dd><a href="https://www.nps.gov/zion/faqs.htm">FAQ</a></dd>
+
+        <!--PARK FIVE-->
+        <dt>Acadia National Park</dt>
+        <dd><a href="https://www.nps.gov/acad/planyourvisit/faqs.htm">FAQ</a></dd>
+
+        <!--PARK SIX-->
+        <dt>Arches National Park</dt>
+        <dd><a href="https://www.nps.gov/arch/faqs.htm">FAQ</a></dd>
+
+        <!--PARK SEVEN-->
+        <dt>Sequoia National Park</dt>
+        <dd><a href="https://www.nps.gov/seki/faqs.htm">FAQ</a></dd>
+
+        <!--PARK EIGHT-->
+        <dt>Grand Teton National Park</dt>
+        <dd><a href="https://www.nps.gov/grte/faqs.htm">FAQ</a></dd>
+
+        <!--PARK NINE-->
+        <dt>Glacier National Park</dt>
+        <dd><a href="https://www.nps.gov/glac/faqs.htm">FAQ</a></dd>
+
+        <!--PARK TEN-->
+        <dt>Joshua National Park</dt>
+        <dd><a href="https://www.nps.gov/jotr/faqs.htm">FAQ</a></dd>
+    </dl>
+
+    <button>I like invisible stuff</button>
+    <script src="js/jquery-2.2.4.js"></script>
+    <script>
+        // $('dd').addClass('invisible');
+        // $('.invisible').css('visibility', 'hidden');
+
+        $('button').click(function() {
+            // $('.invisible').css('visibility', 'hidden');
+            $('dd').toggleClass('invisible');
+        })
+
+
+    </script>
+</body>
+</html>
