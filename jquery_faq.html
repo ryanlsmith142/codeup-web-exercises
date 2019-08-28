@@ -55,6 +55,12 @@
     </style>
 </head>
 <body>
+    <div id="fade-in-h2"></div>
+    <div id="newsletter-div">
+        <h1 id="newsletter">Would you like to sign up for our newsletter?</h1>
+        <span id="hide-div">x</span>
+    </div>
+
     <dl>
         <!--PARK ONE-->
         <dt>Yellowstone National Park</dt>
@@ -186,6 +192,7 @@
 
             $('h3').click(function() {
                 $(this).next().children().css('font-weight', 'bold');
+                $(this).next().toggle().slideDown();
             }); //end of click method
 
             //Blue text
@@ -222,6 +229,25 @@
                     $('#frame-one').addClass('picture-one');
                 }
             });//end of click method
+
+            //EFFECTS EXERCISE
+
+            //hide newsletter div
+
+            $('#hide-div').click(function() {
+               $('#newsletter-div').hide();
+            });
+
+            //hide ul, see h3 click method up top
+
+            $('ul').hide();
+
+            setTimeout(function() {
+                $('#fade-in-h2').html('Register now!').fadeIn();
+            }, 8000);
+
+
+
 
 
 
