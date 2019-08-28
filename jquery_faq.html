@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>jQuery FAQ</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <style>
         .invisible {
             visibility: hidden;
@@ -55,7 +56,15 @@
     </style>
 </head>
 <body>
-    <div id="fade-in-h2"></div>
+    <div id="fade-in-h2">
+        <div class="modal fade" tabindex="-1" role="dialog">
+                <div class="modal-content">
+                    <div class="modal-body">
+                        <p>One fine body&hellip;</p>
+                    </div>
+                </div><!-- /.modal-content -->
+        </div><!-- /.modal -->
+    </div>
     <div id="newsletter-div">
         <h1 id="newsletter">Would you like to sign up for our newsletter?</h1>
         <span id="hide-div">x</span>
@@ -155,6 +164,9 @@
     <!--JAVASCRIPT-->
 
     <script src="js/jquery-2.2.4.js"></script>
+    <!--bootstrap script-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
     <script>
 
 
@@ -242,9 +254,18 @@
 
             $('ul').hide();
 
+            //bonus add bootstrap
+
+            // setTimeout(function() {
+            //     $('#fade-in-h2').html('Register Now').addClass('alert alert-danger m-2').fadeIn();
+            // }, 8000);
+
             setTimeout(function() {
-                $('#fade-in-h2').html('Register now!').fadeIn();
+                $('#fade-in-h2').modal('show');
+                console.log('hey i fired');
             }, 8000);
+
+
 
 
 
