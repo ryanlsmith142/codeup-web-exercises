@@ -204,7 +204,7 @@
 
             $('h3').click(function() {
                 $(this).next().children().css('font-weight', 'bold');
-                $(this).next().toggle().slideDown();
+                $(this).next().slideToggle();
             }); //end of click method
 
             //Blue text
@@ -242,6 +242,8 @@
                 }
             });//end of click method
 
+
+
             //EFFECTS EXERCISE
 
             //hide newsletter div
@@ -260,26 +262,10 @@
             //     $('#fade-in-h2').html('Register Now').addClass('alert alert-danger m-2').fadeIn();
             // }, 8000);
 
-            setTimeout(function() {
-                $('#fade-in-h2').modal('show');
-                console.log('hey i fired');
-            }, 8000);
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+            // setTimeout(function() {
+            //     $('#fade-in-h2').modal('show');
+            //     console.log('hey i fired');
+            // }, 8000);
 
         }); //end of ready function
 
