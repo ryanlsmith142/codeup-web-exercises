@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Ajax Blog</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <style>
+        body {
+            background: #FBFAFB;
+        }
+        .jumbotron {
+            background-image: url('img/beach-blog.jpeg');
+            background-size: cover;
+        }
+        h1 {
+            font-size: 75px;
+            color: #7D5884;
+        }
+    </style>
+</head>
+
+
+<body class="container container-fluid">
+    <div class="jumbotron jumbotron-fluid">
+        <h1>Bloggy McBloggerson: The Internet's Most InFamous Blogger</h1>
+    </div>
+    <div id="posts"></div>
+    <button type="button" class="btn btn-primary">Update Blog Posts</button>
+
+
+
+    <!--SCRIPTS-->
+    <script
+            src="https://code.jquery.com/jquery-2.2.4.js"
+            integrity="sha256-iT6Q9iMJYuQiMWNd9lDyBUStIq/8PuOW33aOqmvFpqI="
+            crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+
+    <script>
+
+        $(document).ready(function() {
+
+            function updateBlog() {
+
+                var blogContent = "";
+
+                $.get('data/blog.json').done(function(data) {
+
+                    data.forEach(function(element) {
+                        blogContent +=     "<h2 class='font-weight-bold'>" + element.title + " " + "<span class='h6'>" + element.date + "</span>" + "</h2>";
+                        blogContent +=     "<p>" + element.content + "</p>";
+                        blogContent +=     "<p>" + element.categories + "</p>";
+                        // blogContent +=     "<p>" + element.date + "</p>";
+
+                    }); //end of forEach()
+
+
+
+                    $('#posts').html(blogContent);
+
+
+                });//end of get()
+
+            } //end of updateBlog()
+
+            updateBlog();
+            $('button').click(updateBlog);
+
+        }); //end of ready()
+    </script>
+</body>
+</html>

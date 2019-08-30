@@ -58,13 +58,14 @@
                     table +=     "<td>" + element.categories + "</td>";
                     table += "</tr>";
 
-                    $('#insertProducts').html(table);
                 }); //end of forEach()
 
+                    $('#insertProducts').html(table);
             }); //end of .get()
+        console.log(table);
 
     }// end of updateTools()
-
+    updateTools();
     $('button').click(updateTools);
 
 
