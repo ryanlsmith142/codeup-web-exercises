@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <title>Weather Map</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link href='https://api.tiles.mapbox.com/mapbox-gl-js/v1.2.1/mapbox-gl.css' rel='stylesheet' />
     <style>
         #card-body {
             display: flex;
@@ -28,10 +29,19 @@
     <div id="card-body">
     </div>
 
+    <div id='map' style='width: 100%; height: 500px;'></div>
+    <pre id='coordinates' class='coordinates'></pre>
+
 <script src="js/jquery-2.2.4.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 <script src="js/keys.js"></script>
+    <script src='https://api.tiles.mapbox.com/mapbox-gl-js/v1.2.1/mapbox-gl.js'></script>
+    <script src="js/mapbox-utils.js"></script>
+
+
+
+
 <script>
     $(document).ready(function() {
 
@@ -83,7 +93,7 @@
                 //USER SUBMITTED DATA THROUGH SELECT INPUT
                 var days = 3 - 1;
 
-                $.get("https://cors-anywhere.herokuapp.com/https://api.darksky.net/forecast/" + darkSkyKey + "/29.4241,-98.4936?").done(function(data) {
+                $.get("https://cors-anywhere.herokuapp.com/https://api.darksky.net/forecast/" + darkSkyKey + "/29.4241,-98.4936").done(function(data) {
 
                     console.log(data);
 
@@ -148,6 +158,31 @@
             makeWeatherCard();
 
             //------------------------------------------------------------------------------------------------------
+
+        //Creates Map and Centers it on San Antonio
+
+        mapboxgl.accessToken = mapboxToken;
+        var map = new mapboxgl.Map({
+            container: 'map',
+            style: 'mapbox://styles/mapbox/streets-v9',
+            zoom: 9,
+            center: [-98.4936, 29.4241]
+        }); //mapboxgl object
+
+        var marker = new mapboxgl.Marker({
+            draggable: true
+        }) //marker object
+            .setLngLat([-98.4936, 29.4241])
+            .addTo(map);
+
+        function onDragEnd() {
+            return marker.getLngLat();
+        } //onDragEnd()
+
+        var lngLat = onDragEnd();
+
+        var longitude
+        marker.on('dragend', onDragEnd);
 
 
     });//ready()
