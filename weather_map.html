@@ -24,9 +24,8 @@
         <h3>San Antonio</h3>
     </div>
 
-
+    <div id="test"></div>
     <div id="card-body">
-
     </div>
 
 <script src="js/jquery-2.2.4.js"></script>
@@ -36,16 +35,53 @@
 <script>
     $(document).ready(function() {
 
-            //---------------------------------------------------------------------------------------------------------
+        //WEATHER OBJECTS
+
+        var weatherObjects = [
+            {
+                condition: "clear-day",
+                url: 'icon/sun.svg'
+
+            }, {
+                condition: "clear-night",
+                url: 'icon/moon-full.svg'
+            }, {
+                condition: "rain",
+                url: 'icon/cloud-rain.svg'
+            }, {
+                condition: "snow",
+                url: 'icon/cloud-snow'
+
+            }, {
+                condition: "sleet",
+                url: 'icon/cloud-hail.svg'
+            }, {
+                condition: "wind",
+                url: 'icon/wind.svg'
+            }, {
+                condition: "fog",
+                url: 'icon/cloud-fog.svg'
+            }, {
+                condition: "cloudy",
+                url: 'icon/cloud.svg'
+            }, {
+                condition: "partly-cloudy-day",
+                url: 'icon/cloud-sun.svg'
+            }, {
+                condition: "partly-cloudy-night",
+                url: 'icon/cloud-moon.svg'
+            }
+        ];
+        //---------------------------------------------------------------------------------------------------------
 
             //UPDATES WEATHER CARDS
-
 
             function makeWeatherCard() {
 
                 var html = "";
 
-                var days = 3;
+                //USER SUBMITTED DATA THROUGH SELECT INPUT
+                var days = 3 - 1;
 
                 $.get("https://cors-anywhere.herokuapp.com/https://api.darksky.net/forecast/" + darkSkyKey + "/29.4241,-98.4936?").done(function(data) {
 
@@ -53,26 +89,27 @@
 
                     for(var i = 0; i <= days; i++) {
 
-                            var dateObject = new Date((data.daily.data[i]) * 1000);
+                            var windSpeed = (data.daily.data[i].windSpeed) * 2.237;
+
+                            var dateObject = new Date((data.daily.data[i].time) * 1000);
 
                             html += "<div class=\"card m-5\" style=\"width: 18rem;\">";
 
                             html += "<div class=\"card-body\">";
 
-                            html += "<h5 id=\"thirdDayDate\" class=\"card-title\">" + dateObject + "</h5>";
+                            html += "<h5 class=\"card-title\">" + dateObject + "</h5>";
 
-                            html += "<h6 id=\"sameDayTemp\" class=\"card-subtitle mb-2 text-muted\">" + element.apparentTemperatureHigh + " / " + element.apparentTemperatureLow + "&#8457;" + "</h6>";
+                            html += "<h6 class=\"card-subtitle mb-2 text-muted\">" + data.daily.data[i].apparentTemperatureHigh + " / " + data.daily.data[i].apparentTemperatureLow + "&#8457;" + "</h6>";
 
-                            html += "<p id=\"sameDaySummary\" class=\"card-text\"></p>";
+                            html += "<p class=\"card-text\">" + data.daily.data[i].summary + "</p>";
 
-                            html += "<p id=\"sameDayWind\" class=\"card-text\"></p>";
+                            html += "<p class=\"card-text\">" + windSpeed.toFixed(2) + " mph" + "</p>";
 
                             html += "</div>";
 
                             html += "</div>";
 
                     } //if
-
 
                     $('#card-body').html(html);
 
@@ -82,7 +119,45 @@
 
             makeWeatherCard();
 
-        // });//get()
+            //------------------------------------------------------------------------------------------------------
+
+        //WEATHER OBJECTS
+
+        var weatherObjects = [
+            {
+                condition: "clear-day",
+                url: 'icon/sun.svg'
+
+            }, {
+                condition: "clear-night",
+                url: 'icon/moon-full.svg'
+            }, {
+                condition: "rain",
+                url: 'icon/cloud-rain.svg'
+            }, {
+                condition: "snow",
+                url: 'icon/cloud-snow'
+
+            }, {
+                condition: "sleet",
+                url: 'icon/cloud-hail.svg'
+            }, {
+                condition: "wind",
+                url: 'icon/wind.svg'
+            }, {
+                condition: "fog",
+                url: 'icon/cloud-fog.svg'
+            }, {
+                condition: "cloudy",
+                url: 'icon/cloud.svg'
+            }, {
+                condition: "partly-cloudy-day",
+                url: 'icon/cloud-sun.svg'
+            }, {
+                condition: "partly-cloudy-night",
+                url: 'icon/cloud-moon.svg'
+            }
+        ]
 
     });//ready()
 </script>
