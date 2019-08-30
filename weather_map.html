@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Weather Map</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <style>
+        #card-body {
+            display: flex;
+            justify-content: center;
+        }
+
+        .jumbotron {
+            display: flex;
+            justify-content: center;
+        }
+    </style>
+</head>
+<body class="container container-fluid">
+    <div class="jumbotron jumbotron-fluid">
+        <h1>Weather Application</h1>
+    </div>
+    <div>
+        <h3>San Antonio</h3>
+    </div>
+
+
+    <div id="card-body">
+
+    </div>
+
+<script src="js/jquery-2.2.4.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+<script src="js/keys.js"></script>
+<script>
+    $(document).ready(function() {
+
+            //---------------------------------------------------------------------------------------------------------
+
+            //UPDATES WEATHER CARDS
+
+
+            function makeWeatherCard() {
+
+                var html = "";
+
+                var days = 3;
+
+                $.get("https://cors-anywhere.herokuapp.com/https://api.darksky.net/forecast/" + darkSkyKey + "/29.4241,-98.4936?").done(function(data) {
+
+                    console.log(data);
+
+                    for(var i = 0; i <= days; i++) {
+
+                            var dateObject = new Date((data.daily.data[i]) * 1000);
+
+                            html += "<div class=\"card m-5\" style=\"width: 18rem;\">";
+
+                            html += "<div class=\"card-body\">";
+
+                            html += "<h5 id=\"thirdDayDate\" class=\"card-title\">" + dateObject + "</h5>";
+
+                            html += "<h6 id=\"sameDayTemp\" class=\"card-subtitle mb-2 text-muted\">" + element.apparentTemperatureHigh + " / " + element.apparentTemperatureLow + "&#8457;" + "</h6>";
+
+                            html += "<p id=\"sameDaySummary\" class=\"card-text\"></p>";
+
+                            html += "<p id=\"sameDayWind\" class=\"card-text\"></p>";
+
+                            html += "</div>";
+
+                            html += "</div>";
+
+                    } //if
+
+
+                    $('#card-body').html(html);
+
+                }); //get()
+
+            } //makeWeatherCard()
+
+            makeWeatherCard();
+
+        // });//get()
+
+    });//ready()
+</script>
+</body>
+</html>
