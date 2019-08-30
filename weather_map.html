@@ -89,7 +89,33 @@
 
                     for(var i = 0; i <= days; i++) {
 
+                            var weatherCondition = "";
+
+                            //Stores the icon string value into this variable
+
+                            var weatherIcon = data.daily.data[i].icon;
+
+                            //Cycles through the weatherObjects array
+
+                            weatherObjects.forEach(function(element) {
+
+                                //check to see if the icon string value is found in the weatherObjects array
+
+                                if(weatherIcon === element.condition) {
+
+                                    //Puts the url for the correct image into the weatherCondition variable
+
+                                    weatherCondition += element.url;
+
+                                } //if
+
+                            }); //forEach()
+
+                            //Converts windSpeed from meters per second to miles per hour
+
                             var windSpeed = (data.daily.data[i].windSpeed) * 2.237;
+
+                            //Converts time property value to readable time
 
                             var dateObject = new Date((data.daily.data[i].time) * 1000);
 
@@ -100,6 +126,8 @@
                             html += "<h5 class=\"card-title\">" + dateObject + "</h5>";
 
                             html += "<h6 class=\"card-subtitle mb-2 text-muted\">" + data.daily.data[i].apparentTemperatureHigh + " / " + data.daily.data[i].apparentTemperatureLow + "&#8457;" + "</h6>";
+
+                            html += "<img src=" + weatherCondition + ">";
 
                             html += "<p class=\"card-text\">" + data.daily.data[i].summary + "</p>";
 
@@ -121,43 +149,6 @@
 
             //------------------------------------------------------------------------------------------------------
 
-        //WEATHER OBJECTS
-
-        var weatherObjects = [
-            {
-                condition: "clear-day",
-                url: 'icon/sun.svg'
-
-            }, {
-                condition: "clear-night",
-                url: 'icon/moon-full.svg'
-            }, {
-                condition: "rain",
-                url: 'icon/cloud-rain.svg'
-            }, {
-                condition: "snow",
-                url: 'icon/cloud-snow'
-
-            }, {
-                condition: "sleet",
-                url: 'icon/cloud-hail.svg'
-            }, {
-                condition: "wind",
-                url: 'icon/wind.svg'
-            }, {
-                condition: "fog",
-                url: 'icon/cloud-fog.svg'
-            }, {
-                condition: "cloudy",
-                url: 'icon/cloud.svg'
-            }, {
-                condition: "partly-cloudy-day",
-                url: 'icon/cloud-sun.svg'
-            }, {
-                condition: "partly-cloudy-night",
-                url: 'icon/cloud-moon.svg'
-            }
-        ]
 
     });//ready()
 </script>
