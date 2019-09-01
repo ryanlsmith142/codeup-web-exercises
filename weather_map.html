@@ -45,6 +45,38 @@
 <script>
     $(document).ready(function() {
 
+        //Creates Map and Centers it on San Antonio
+
+        mapboxgl.accessToken = mapboxToken;
+        var map = new mapboxgl.Map({
+            container: 'map',
+            style: 'mapbox://styles/mapbox/streets-v9',
+            zoom: 9,
+            center: [-98.4936, 29.4241]
+        }); //mapboxgl object
+
+        var marker = new mapboxgl.Marker({
+            draggable: true
+        }) //marker object
+            .setLngLat([-98.4936, 29.4241])
+            .addTo(map);
+
+        function onDragEnd() {
+            return lngLat = marker.getLngLat();
+        } //onDragEnd()
+
+        var coordinates = onDragEnd();
+
+        var longitude = coordinates.lng.toString();
+
+        console.log(longitude);
+
+
+
+        var latitude = coordinates.lat.toString();
+
+        console.log(latitude);
+        marker.on('dragend', onDragEnd);
         //WEATHER OBJECTS
 
         var weatherObjects = [
@@ -93,7 +125,7 @@
                 //USER SUBMITTED DATA THROUGH SELECT INPUT
                 var days = 3 - 1;
 
-                $.get("https://cors-anywhere.herokuapp.com/https://api.darksky.net/forecast/" + darkSkyKey + "/29.4241,-98.4936").done(function(data) {
+                $.get("https://cors-anywhere.herokuapp.com/https://api.darksky.net/forecast/" + darkSkyKey + "/" + latitude + ", " + longitude).done(function(data) {
 
                     console.log(data);
 
@@ -159,30 +191,6 @@
 
             //------------------------------------------------------------------------------------------------------
 
-        //Creates Map and Centers it on San Antonio
-
-        mapboxgl.accessToken = mapboxToken;
-        var map = new mapboxgl.Map({
-            container: 'map',
-            style: 'mapbox://styles/mapbox/streets-v9',
-            zoom: 9,
-            center: [-98.4936, 29.4241]
-        }); //mapboxgl object
-
-        var marker = new mapboxgl.Marker({
-            draggable: true
-        }) //marker object
-            .setLngLat([-98.4936, 29.4241])
-            .addTo(map);
-
-        function onDragEnd() {
-            return marker.getLngLat();
-        } //onDragEnd()
-
-        var lngLat = onDragEnd();
-
-        var longitude
-        marker.on('dragend', onDragEnd);
 
 
     });//ready()
