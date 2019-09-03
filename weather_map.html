@@ -10,31 +10,45 @@
         #card-body {
             display: flex;
             justify-content: center;
+            flex-wrap: wrap;
+            margin-top: 1em;
+            margin-bottom: 1em;
         }
-
-        .jumbotron {
+        .custom-select {
+            width: 250px;
+        }
+        .main-nav {
+            background-color: #3b5998;
+            color: white;
+        }
+        #map {
+            border: #3b5998 solid 10px;
             display: flex;
-            justify-content: center;
-            /*background-image: url('gif/rain.gif');*/
-            background-size: cover;
-            background-position: center;
+            margin: auto;
+        }
+        .card {
+            border: black 2px dotted;
         }
     </style>
 </head>
-<body class="container container-fluid">
-    <div class="jumbotron jumbotron-fluid">
-        <h1>Weather Application</h1>
-    </div>
-    <div>
-        <h3 id="cityState"></h3>
-    </div>
+<body>
+    <nav class="main-nav navbar">
+        <span class="navbar-brand mb-0 h1">Weather Application</span>
+        <select class="custom-select" id="weather-forecast">
+            <option value="3">3 Days Forecast</option>
+            <option value="5">5 Days Forecast</option>
+            <option value="7">7 Days Forecast</option>
+        </select>
+        <p class="m-2" id="cityState"></p>
+        <button id="toggle-map">Show Map</button>
+    </nav>
 
-    <div id="test"></div>
-    <div id="card-body">
-    </div>
+    <div id="card-body"></div>
 
-    <div id='map' style='width: 100%; height: 500px;'></div>
+    <div id='map' style='width: 50%; height: 350px;'></div>
+
     <pre id='coordinates' class='coordinates'></pre>
+
 
 <script src="js/jquery-2.2.4.js"></script>
     <script src='https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v4.4.1/mapbox-gl-geocoder.min.js'></script>
@@ -48,8 +62,11 @@
 
 
 <script>
-    // $(document).ready(function() {
+    $(document).ready(function() {
 
+       $('#toggle-map').click(function() {
+          $('#map').toggle();
+       });
         var longitude = "-98.4936";
 
         var latitude = "29.4241";
@@ -95,12 +112,12 @@
             $.get('https://api.mapbox.com/geocoding/v5/mapbox.places/' + longitude + "," + latitude + ".json?access_token=" + mapboxToken).done(function(data) {
                 cityState = data.features[1].place_name;
                 $('#cityState').text(cityState);
-
-
             })//get()
         } //reverseGeocode()
 
         reverseGeocode();
+
+        //WEATHER OBJECTS
 
         var weatherObjects = [
             {
@@ -139,87 +156,7 @@
             }
         ];
 
-
-        //WEATHER OBJECTS
-
         //---------------------------------------------------------------------------------------------------------
-
-        // function makeWeatherCard() {
-        //
-        //     var html = "";
-        //
-        //     //USER SUBMITTED DATA THROUGH SELECT INPUT
-        //     var days = 3 - 1;
-        //
-        //     $.get("https://cors-anywhere.herokuapp.com/https://api.darksky.net/forecast/" + darkSkyKey + "/" + latitude + ", " + longitude).done(function(data) {
-        //
-        //         console.log(data);
-        //
-        //         for(var i = 0; i <= days; i++) {
-        //
-        //             var weatherCondition = "";
-        //
-        //             //Stores the icon string value into this variable
-        //
-        //             var weatherIcon = data.daily.data[i].icon;
-        //
-        //             //Cycles through the weatherObjects array
-        //
-        //             weatherObjects.forEach(function(element, index) {
-        //
-        //                 //check to see if the icon string value is found in the weatherObjects array
-        //
-        //                 if(weatherIcon === element.condition) {
-        //
-        //                     //Puts the url for the correct image into the weatherCondition variable
-        //
-        //                     weatherCondition += element.url;
-        //
-        //                 } //if
-        //
-        //             }); //forEach()
-        //
-        //             //Converts windSpeed from meters per second to miles per hour
-        //
-        //             var windSpeed = (data.daily.data[i].windSpeed) * 2.237;
-        //
-        //             //Converts time property value to readable time
-        //
-        //             var dateObject = new Date(data.daily.data[i].time * 1000);
-        //
-        //             dateObject = dateObject.toDateString();
-        //
-        //
-        //
-        //
-        //             html += "<div class=\"card m-5\" style=\"width: 18rem;\">";
-        //
-        //             html += "<div class=\"card-body\">";
-        //
-        //             html += "<h5 class=\"card-title\">" + dateObject + "</h5>";
-        //
-        //             html += "<h6 class=\"card-subtitle mb-2 text-muted\">" + data.daily.data[i].apparentTemperatureHigh + " / " + data.daily.data[i].apparentTemperatureLow + "&#8457;" + "</h6>";
-        //
-        //             html += "<img src=" + weatherCondition + ">";
-        //
-        //
-        //             html += "<p class=\"card-text\">" + data.daily.data[i].summary + "</p>";
-        //
-        //             html += "<p class=\"card-text\">" + windSpeed.toFixed(2) + " mph" + "</p>";
-        //
-        //             html += "</div>";
-        //
-        //             html += "</div>";
-        //
-        //         } //if
-        //
-        //         $('#card-body').html(html);
-        //
-        //     }); //get()
-        //
-        // } //makeWeatherCard()
-        //
-        // makeWeatherCard();
 
             //UPDATES WEATHER CARDS
 
@@ -228,9 +165,13 @@
                 var html = "";
 
                 //USER SUBMITTED DATA THROUGH SELECT INPUT
-                var days = 3 - 1;
+
+                    var days = $('#weather-forecast').children('option:selected').val();
+                    days = days -1;
+                    console.log(days);
 
                 $.get("https://cors-anywhere.herokuapp.com/https://api.darksky.net/forecast/" + darkSkyKey + "/" + latitude + ", " + longitude).done(function(data) {
+
 
                     // console.log(data);
 
@@ -254,8 +195,6 @@
 
                                     weatherCondition += element.url;
 
-                                    $('')
-
                                 } //if
 
                             }); //forEach()
@@ -270,7 +209,7 @@
 
                             dateObject = dateObject.toDateString();
 
-                            html += "<div class=\"card m-5\" style=\"width: 18rem;\">";
+                            html += "<div class=\"m-1 card\" style=\"width: 10rem;\">";
 
                             html += "<div class=\"card-body\">";
 
@@ -298,6 +237,7 @@
 
             updateWeatherCard();
 
+            $('.form-control').change(updateWeatherCard());
             //------------------------------------------------------------------------------------------------------
         function onDragEnd() {
             lngLat = marker.getLngLat();
@@ -310,7 +250,7 @@
         marker.on('dragend', onDragEnd);
 
 
-    // });//ready()
+    });//ready()
 </script>
 </body>
 </html>
