@@ -6,7 +6,11 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <link href='https://api.tiles.mapbox.com/mapbox-gl-js/v1.2.1/mapbox-gl.css' rel='stylesheet' />
     <link rel='stylesheet' href='https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v4.4.1/mapbox-gl-geocoder.css' type='text/css' />
+    <link href="https://fonts.googleapis.com/css?family=Manjari&display=swap" rel="stylesheet">
     <style>
+        body {
+            font-family: 'Manjari', sans-serif;
+        }
         #card-body {
             display: flex;
             justify-content: center;
@@ -28,6 +32,15 @@
         }
         .card {
             border: black 2px dotted;
+        }
+        .zoom {
+            transition: transform .2s;
+            z-index: 1;
+        }
+
+        .zoom:hover {
+            transform: scale(1.2);
+            z-index: 2;
         }
     </style>
 </head>
@@ -64,6 +77,8 @@
 <script>
     $(document).ready(function() {
 
+        //Event listener for show map button
+
        $('#toggle-map').click(function() {
           $('#map').toggle();
        });
@@ -74,6 +89,7 @@
         var lngLat = "";
 
         //Creates Map and Centers it on San Antonio
+
         mapboxgl.accessToken = mapboxToken;
         var map = new mapboxgl.Map({
             container: 'map',
@@ -82,18 +98,24 @@
             center: [-98.4936, 29.4241]
         }); //mapboxgl object
 
+        //Creates draggable marker
+
         var marker = new mapboxgl.Marker({
             draggable: true
         }) //marker object
             .setLngLat([-98.4936, 29.4241])
             .addTo(map);
 
+        //Creates a search box
+
         map.addControl(new MapboxGeocoder({
-            accessToken: mapboxgl.accessToken,
+            accessToken: mapboxgl.accessToken
             // mapboxgl: mapboxgl
         }));
+
         var cityState = "";
 
+        //Event listener for when the map stops moving to selected destination
         map.on('moveend', function() {
             lngLat = map.getCenter();
             console.log(lngLat);
@@ -103,10 +125,6 @@
             updateWeatherCard();
             reverseGeocode();
         });
-
-
-
-        // $('#cityState').text('San Antonio, Texas');
 
         function reverseGeocode() {
             $.get('https://api.mapbox.com/geocoding/v5/mapbox.places/' + longitude + "," + latitude + ".json?access_token=" + mapboxToken).done(function(data) {
@@ -167,7 +185,9 @@
                 //USER SUBMITTED DATA THROUGH SELECT INPUT
 
                     var days = $('#weather-forecast').children('option:selected').val();
-                    days = days -1;
+
+                    days = days - 1;
+
                     console.log(days);
 
                 $.get("https://cors-anywhere.herokuapp.com/https://api.darksky.net/forecast/" + darkSkyKey + "/" + latitude + ", " + longitude).done(function(data) {
@@ -209,7 +229,9 @@
 
                             dateObject = dateObject.toDateString();
 
-                            html += "<div class=\"m-1 card\" style=\"width: 10rem;\">";
+                            dateObject = dateObject.slice(0, 10);
+
+                            html += "<div class=\"m-1 zoom text-center card\" style=\"width: 15rem;\">";
 
                             html += "<div class=\"card-body\">";
 
@@ -237,7 +259,7 @@
 
             updateWeatherCard();
 
-            $('.form-control').change(updateWeatherCard());
+            $('#weather -forecast').change(updateWeatherCard);
             //------------------------------------------------------------------------------------------------------
         function onDragEnd() {
             lngLat = marker.getLngLat();
