@@ -5,6 +5,7 @@
     <title>Weather Map</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <link href='https://api.tiles.mapbox.com/mapbox-gl-js/v1.2.1/mapbox-gl.css' rel='stylesheet' />
+    <link rel='stylesheet' href='https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v4.4.1/mapbox-gl-geocoder.css' type='text/css' />
     <style>
         #card-body {
             display: flex;
@@ -22,7 +23,7 @@
         <h1>Weather Application</h1>
     </div>
     <div>
-        <h3>San Antonio</h3>
+        <h3 id="cityState"></h3>
     </div>
 
     <div id="test"></div>
@@ -33,6 +34,7 @@
     <pre id='coordinates' class='coordinates'></pre>
 
 <script src="js/jquery-2.2.4.js"></script>
+    <script src='https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v4.4.1/mapbox-gl-geocoder.min.js'></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 <script src="js/keys.js"></script>
@@ -45,8 +47,13 @@
 <script>
     $(document).ready(function() {
 
-        //Creates Map and Centers it on San Antonio
+        var longitude = "-98.4936";
 
+        var latitude = "29.4241";
+
+        var lngLat = "";
+
+        //Creates Map and Centers it on San Antonio
         mapboxgl.accessToken = mapboxToken;
         var map = new mapboxgl.Map({
             container: 'map',
@@ -61,24 +68,27 @@
             .setLngLat([-98.4936, 29.4241])
             .addTo(map);
 
-        function onDragEnd() {
-            return lngLat = marker.getLngLat();
-        } //onDragEnd()
+        map.addControl(new MapboxGeocoder({
+            accessToken: mapboxgl.accessToken
+            // mapboxgl: mapboxgl
+        }));
 
-        var coordinates = onDragEnd();
+        map.on('moveend', function() {
+            lngLat = map.getCenter();
+            marker.setLngLat(lngLat);
+        });
 
-        var longitude = coordinates.lng.toString();
+        var cityState = "";
 
-        console.log(longitude);
+        function reverseGeocode() {
+            $.get('https://api.mapbox.com/geocoding/v5/mapbox.places/' + longitude + "," + latitude + ".json?access_token=" + mapboxToken).done(function(data) {
+                console.log(data);
+                cityState = data.features[1].place_name;
+                $('#cityState').text(cityState);
+            })//get()
+        } //reverseGeocode()
 
-
-
-        var latitude = coordinates.lat.toString();
-
-        console.log(latitude);
-        marker.on('dragend', onDragEnd);
-        //WEATHER OBJECTS
-
+        reverseGeocode();
         var weatherObjects = [
             {
                 condition: "clear-day",
@@ -114,11 +124,86 @@
                 url: 'icon/cloud-moon.svg'
             }
         ];
+
+
+        //WEATHER OBJECTS
+
         //---------------------------------------------------------------------------------------------------------
+
+        function makeWeatherCard() {
+
+            var html = "";
+
+            //USER SUBMITTED DATA THROUGH SELECT INPUT
+            var days = 3 - 1;
+
+            $.get("https://cors-anywhere.herokuapp.com/https://api.darksky.net/forecast/" + darkSkyKey + "/" + latitude + ", " + longitude).done(function(data) {
+
+                // console.log(data);
+
+                for(var i = 0; i <= days; i++) {
+
+                    var weatherCondition = "";
+
+                    //Stores the icon string value into this variable
+
+                    var weatherIcon = data.daily.data[i].icon;
+
+                    //Cycles through the weatherObjects array
+
+                    weatherObjects.forEach(function(element) {
+
+                        //check to see if the icon string value is found in the weatherObjects array
+
+                        if(weatherIcon === element.condition) {
+
+                            //Puts the url for the correct image into the weatherCondition variable
+
+                            weatherCondition += element.url;
+
+                        } //if
+
+                    }); //forEach()
+
+                    //Converts windSpeed from meters per second to miles per hour
+
+                    var windSpeed = (data.daily.data[i].windSpeed) * 2.237;
+
+                    //Converts time property value to readable time
+
+                    var dateObject = new Date((data.daily.data[i].time) * 1000);
+
+                    html += "<div class=\"card m-5\" style=\"width: 18rem;\">";
+
+                    html += "<div class=\"card-body\">";
+
+                    html += "<h5 class=\"card-title\">" + dateObject + "</h5>";
+
+                    html += "<h6 class=\"card-subtitle mb-2 text-muted\">" + data.daily.data[i].apparentTemperatureHigh + " / " + data.daily.data[i].apparentTemperatureLow + "&#8457;" + "</h6>";
+
+                    html += "<img src=" + weatherCondition + ">";
+
+                    html += "<p class=\"card-text\">" + data.daily.data[i].summary + "</p>";
+
+                    html += "<p class=\"card-text\">" + windSpeed.toFixed(2) + " mph" + "</p>";
+
+                    html += "</div>";
+
+                    html += "</div>";
+
+                } //if
+
+                $('#card-body').html(html);
+
+            }); //get()
+
+        } //makeWeatherCard()
+
+        makeWeatherCard();
 
             //UPDATES WEATHER CARDS
 
-            function makeWeatherCard() {
+            function updateWeatherCard() {
 
                 var html = "";
 
@@ -127,7 +212,7 @@
 
                 $.get("https://cors-anywhere.herokuapp.com/https://api.darksky.net/forecast/" + darkSkyKey + "/" + latitude + ", " + longitude).done(function(data) {
 
-                    console.log(data);
+                    // console.log(data);
 
                     for(var i = 0; i <= days; i++) {
 
@@ -185,12 +270,20 @@
 
                 }); //get()
 
-            } //makeWeatherCard()
+            } //updateWeatherCard()
 
-            makeWeatherCard();
+            updateWeatherCard();
 
             //------------------------------------------------------------------------------------------------------
+        function onDragEnd() {
+            lngLat = marker.getLngLat();
+            longitude = lngLat.lng.toString();
+            latitude = lngLat.lat.toString();
+            updateWeatherCard();
+            console.log(reverseGeocode());
+        } //onDragEnd()
 
+        marker.on('dragend', onDragEnd);
 
 
     });//ready()
