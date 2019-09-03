@@ -15,6 +15,9 @@
         .jumbotron {
             display: flex;
             justify-content: center;
+            /*background-image: url('gif/rain.gif');*/
+            background-size: cover;
+            background-position: center;
         }
     </style>
 </head>
@@ -45,7 +48,7 @@
 
 
 <script>
-    $(document).ready(function() {
+    // $(document).ready(function() {
 
         var longitude = "-98.4936";
 
@@ -69,26 +72,36 @@
             .addTo(map);
 
         map.addControl(new MapboxGeocoder({
-            accessToken: mapboxgl.accessToken
+            accessToken: mapboxgl.accessToken,
             // mapboxgl: mapboxgl
         }));
+        var cityState = "";
 
         map.on('moveend', function() {
             lngLat = map.getCenter();
+            console.log(lngLat);
             marker.setLngLat(lngLat);
+            longitude = lngLat.lng;
+            latitude = lngLat.lat;
+            updateWeatherCard();
+            reverseGeocode();
         });
 
-        var cityState = "";
+
+
+        // $('#cityState').text('San Antonio, Texas');
 
         function reverseGeocode() {
             $.get('https://api.mapbox.com/geocoding/v5/mapbox.places/' + longitude + "," + latitude + ".json?access_token=" + mapboxToken).done(function(data) {
-                console.log(data);
                 cityState = data.features[1].place_name;
                 $('#cityState').text(cityState);
+
+
             })//get()
         } //reverseGeocode()
 
         reverseGeocode();
+
         var weatherObjects = [
             {
                 condition: "clear-day",
@@ -99,7 +112,8 @@
                 url: 'icon/moon-full.svg'
             }, {
                 condition: "rain",
-                url: 'icon/cloud-rain.svg'
+                url: 'icon/cloud-rain.svg',
+                gif: 'gif/rain.gif'
             }, {
                 condition: "snow",
                 url: 'icon/cloud-snow'
@@ -130,76 +144,82 @@
 
         //---------------------------------------------------------------------------------------------------------
 
-        function makeWeatherCard() {
-
-            var html = "";
-
-            //USER SUBMITTED DATA THROUGH SELECT INPUT
-            var days = 3 - 1;
-
-            $.get("https://cors-anywhere.herokuapp.com/https://api.darksky.net/forecast/" + darkSkyKey + "/" + latitude + ", " + longitude).done(function(data) {
-
-                // console.log(data);
-
-                for(var i = 0; i <= days; i++) {
-
-                    var weatherCondition = "";
-
-                    //Stores the icon string value into this variable
-
-                    var weatherIcon = data.daily.data[i].icon;
-
-                    //Cycles through the weatherObjects array
-
-                    weatherObjects.forEach(function(element) {
-
-                        //check to see if the icon string value is found in the weatherObjects array
-
-                        if(weatherIcon === element.condition) {
-
-                            //Puts the url for the correct image into the weatherCondition variable
-
-                            weatherCondition += element.url;
-
-                        } //if
-
-                    }); //forEach()
-
-                    //Converts windSpeed from meters per second to miles per hour
-
-                    var windSpeed = (data.daily.data[i].windSpeed) * 2.237;
-
-                    //Converts time property value to readable time
-
-                    var dateObject = new Date((data.daily.data[i].time) * 1000);
-
-                    html += "<div class=\"card m-5\" style=\"width: 18rem;\">";
-
-                    html += "<div class=\"card-body\">";
-
-                    html += "<h5 class=\"card-title\">" + dateObject + "</h5>";
-
-                    html += "<h6 class=\"card-subtitle mb-2 text-muted\">" + data.daily.data[i].apparentTemperatureHigh + " / " + data.daily.data[i].apparentTemperatureLow + "&#8457;" + "</h6>";
-
-                    html += "<img src=" + weatherCondition + ">";
-
-                    html += "<p class=\"card-text\">" + data.daily.data[i].summary + "</p>";
-
-                    html += "<p class=\"card-text\">" + windSpeed.toFixed(2) + " mph" + "</p>";
-
-                    html += "</div>";
-
-                    html += "</div>";
-
-                } //if
-
-                $('#card-body').html(html);
-
-            }); //get()
-
-        } //makeWeatherCard()
-
-        makeWeatherCard();
+        // function makeWeatherCard() {
+        //
+        //     var html = "";
+        //
+        //     //USER SUBMITTED DATA THROUGH SELECT INPUT
+        //     var days = 3 - 1;
+        //
+        //     $.get("https://cors-anywhere.herokuapp.com/https://api.darksky.net/forecast/" + darkSkyKey + "/" + latitude + ", " + longitude).done(function(data) {
+        //
+        //         console.log(data);
+        //
+        //         for(var i = 0; i <= days; i++) {
+        //
+        //             var weatherCondition = "";
+        //
+        //             //Stores the icon string value into this variable
+        //
+        //             var weatherIcon = data.daily.data[i].icon;
+        //
+        //             //Cycles through the weatherObjects array
+        //
+        //             weatherObjects.forEach(function(element, index) {
+        //
+        //                 //check to see if the icon string value is found in the weatherObjects array
+        //
+        //                 if(weatherIcon === element.condition) {
+        //
+        //                     //Puts the url for the correct image into the weatherCondition variable
+        //
+        //                     weatherCondition += element.url;
+        //
+        //                 } //if
+        //
+        //             }); //forEach()
+        //
+        //             //Converts windSpeed from meters per second to miles per hour
+        //
+        //             var windSpeed = (data.daily.data[i].windSpeed) * 2.237;
+        //
+        //             //Converts time property value to readable time
+        //
+        //             var dateObject = new Date(data.daily.data[i].time * 1000);
+        //
+        //             dateObject = dateObject.toDateString();
+        //
+        //
+        //
+        //
+        //             html += "<div class=\"card m-5\" style=\"width: 18rem;\">";
+        //
+        //             html += "<div class=\"card-body\">";
+        //
+        //             html += "<h5 class=\"card-title\">" + dateObject + "</h5>";
+        //
+        //             html += "<h6 class=\"card-subtitle mb-2 text-muted\">" + data.daily.data[i].apparentTemperatureHigh + " / " + data.daily.data[i].apparentTemperatureLow + "&#8457;" + "</h6>";
+        //
+        //             html += "<img src=" + weatherCondition + ">";
+        //
+        //
+        //             html += "<p class=\"card-text\">" + data.daily.data[i].summary + "</p>";
+        //
+        //             html += "<p class=\"card-text\">" + windSpeed.toFixed(2) + " mph" + "</p>";
+        //
+        //             html += "</div>";
+        //
+        //             html += "</div>";
+        //
+        //         } //if
+        //
+        //         $('#card-body').html(html);
+        //
+        //     }); //get()
+        //
+        // } //makeWeatherCard()
+        //
+        // makeWeatherCard();
 
             //UPDATES WEATHER CARDS
 
@@ -234,6 +254,8 @@
 
                                     weatherCondition += element.url;
 
+                                    $('')
+
                                 } //if
 
                             }); //forEach()
@@ -245,6 +267,8 @@
                             //Converts time property value to readable time
 
                             var dateObject = new Date((data.daily.data[i].time) * 1000);
+
+                            dateObject = dateObject.toDateString();
 
                             html += "<div class=\"card m-5\" style=\"width: 18rem;\">";
 
@@ -286,7 +310,7 @@
         marker.on('dragend', onDragEnd);
 
 
-    });//ready()
+    // });//ready()
 </script>
 </body>
 </html>
