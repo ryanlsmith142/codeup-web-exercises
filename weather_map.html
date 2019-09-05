@@ -48,9 +48,9 @@
     <nav class="main-nav navbar">
         <span class="navbar-brand mb-0 h1">Weather Application</span>
         <select class="custom-select" id="weather-forecast">
-            <option value="3">3 Days Forecast</option>
-            <option value="5">5 Days Forecast</option>
-            <option value="7">7 Days Forecast</option>
+            <option value="3">3 Day Forecast</option>
+            <option value="5">5 Day Forecast</option>
+            <option value="7">7 Day Forecast</option>
         </select>
         <p class="m-2" id="cityState"></p>
         <button id="toggle-map">Show Map</button>
@@ -259,7 +259,7 @@
 
             updateWeatherCard();
 
-            $('#weather -forecast').change(updateWeatherCard);
+            $('#weather-forecast').change(updateWeatherCard);
             //------------------------------------------------------------------------------------------------------
         function onDragEnd() {
             lngLat = marker.getLngLat();
