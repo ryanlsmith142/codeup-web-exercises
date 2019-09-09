@@ -2,6 +2,13 @@
 
 const users = [
     {
+        id: 4,
+        name: 'fernando',
+        email: 'fernando@codeup.com',
+        languages: ['java', 'php', 'sql'],
+        yearsOfExperience: 8
+    },
+    {
         id: 1,
         name: 'ryan',
         email: 'ryan@codeup.com',
@@ -23,13 +30,6 @@ const users = [
         yearsOfExperience: 7
     },
     {
-        id: 4,
-        name: 'fernando',
-        email: 'fernando@codeup.com',
-        languages: ['java', 'php', 'sql'],
-        yearsOfExperience: 8
-    },
-    {
         id: 5,
         name: 'justin',
         email: 'justin@codeup.com',
@@ -38,17 +38,27 @@ const users = [
     }
 ];
 
+
 //.filter() 3 LANGUAGES
 
 let threeLang = users.filter((user) => user.languages.length >= 3);
 
 // console.log(threeLang);
 
+
+
+
+
+
 //.map() USER EMAIL
 
 let userEmail = users.map((user) => user.email);
 
 // console.log(userEmail);
+
+
+
+
 
 //.reduce() average and total years experience
 
@@ -61,28 +71,55 @@ let yearsExperienceAvg = users.reduce((yearsTotal, user) => {
 
 // console.log(yearsExperienceAvg);
 
+
+
+
+
+
 // reduce() find longest email
 
-let longestEmail = users.reduce((total, user) => {
-    if(user.email.length > total.length) {
-        total = user.email;
+let longestEmail = users.reduce((email, user) => {
+
+    if(user.email.length > email.length) {
+        email = user.email;
     }
 
-    return total;
+    return email;
 
 }, "");
 
-// console.log(longestEmail);
+console.log(longestEmail);
+
+
+
 
 // reduce() string of instructors
 
-let nameString = users.reduce((stringOfInstructors, user) => {
 
-    stringOfInstructors += user.name + " ";
+let nameString = users.reduce((stringOfInstructors, user, index) => {
 
-    return stringOfInstructors;
-
+    if(index === users.length - 1) {
+        return `${stringOfInstructors}${user.name}.`;
+    } else {
+        return `${stringOfInstructors}${user.name}, `;
+    }
 
 }, "Your instructors are: ");
 
-console.log(nameString);
+// console.log(nameString);
+
+
+
+
+
+
+// BONUS
+
+// .reduce get a unique list of languages.
+
+let uniqueLang = users.reduce((langString, user) => {
+    langString += user.languages;
+    return langString;
+});
+
+// console.log(uniqueLang);
