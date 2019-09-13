@@ -44,21 +44,28 @@ function wait(number) {
 
 function lastCommit(gitHubUsername) {
 
-    return new Promise((resolve) => {
 
-        fetch(`https://api.github.com/users/${gitHubUsername}/events`, {headers: {'Authorization': 'token 98c32379190d69592e02263c854c6a7fb5c8b67d'}}).then((data) => {
+        fetch(`https://api.github.com/users/${gitHubUsername}/events`, {headers: {'Authorization': '98c32379190d69592e02263c854c6a7fb5c8b67d'}}).then((data) => {
 
             return data.json();
 
         }).then((userData) => {
 
             userData.filter((user) => {
-                if(user.type === 'PushEvent') {
-                    return user.type;
-                }
+                return user.type === 'PushEvent'
             }); //filter()
-        }) //fetch()
-    });//promise()
+        }).then(listEvents => console.log(listEvents[0].created_at)) //fetch()
+
 } //lastCommit
 
-console.log(lastCommit('ryanlsmith142'));
+lastCommit('ryanlsmith142');
+
+function getCommit(user){
+    fetch( `https://api.github.com/users/${user}/events`, {headers: {'Authorization': `98c32379190d69592e02263c854c6a7fb5c8b67d` }})
+        .then(response => response.json())
+        .then(data => data.filter(function (object) {
+            return object.type === 'PushEvent'
+        }))
+        .then(listEvents => console.log(listEvents[0].created_at))
+}
+getCommit("ryanlsmith142");
